@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.AgencyDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.Agency" id="AgencyResult">
+        <id property="agencyId" column="AGENCY_ID" />
+        <result property="userId" column="USER_ID" />
+        <result property="agencyNick" column="AGENCY_NICK" />
+        <result property="role" column="ROLE" />
+        <result property="agencyName" column="AGENCY_NAME" />
+        <result property="agencyLegal" column="AGENCY_LEGAL" />
+        <result property="agencyAddr" column="AGENCY_ADDR" />
+        <result property="agencyTel" column="AGENCY_TEL" />
+        <result property="agencyMail" column="AGENCY_MAIL" />
+        <result property="established" column="ESTABLISHED" />
+        <result property="agencyFunds" column="AGENCY_FUNDS" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 新增中介 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="agencyId" parameterType="cn.realliu.htm.common.bean.Agency" >
+        insert into AGENCY(USER_ID,AGENCY_NICK,ROLE,STATUS)
+        values(#{userId,jdbcType=INTEGER},#{agencyNick,jdbcType=VARCHAR},#{role,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 通过用户id查找房东信息 -->
+    <select id="selectByUserId" parameterType="Integer" resultMap="AgencyResult">
+            select *
+            from AGENCY
+            where USER_ID= #{userId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 通过用户id修改房东信息 -->
+    <update id="update" parameterType="cn.realliu.htm.common.bean.Agency">
+		update AGENCY
+		set AGENCY_NAME=#{agencyName,jdbcType=VARCHAR},AGENCY_LEGAL=#{agencyLegal,jdbcType=VARCHAR},
+		    AGENCY_ADDR=#{agencyAddr,jdbcType=VARCHAR},AGENCY_TEL=#{agencyTel,jdbcType=VARCHAR},
+		    AGENCY_MAIL=#{agencyMail,jdbcType=VARCHAR},ESTABLISHED=#{established,jdbcType=VARCHAR},
+		    AGENCY_FUNDS=#{agencyFunds,jdbcType=VARCHAR},STATUS=#{status,jdbcType=VARCHAR}
+		where USER_ID=#{userId}
+	</update>
+
+</mapper>

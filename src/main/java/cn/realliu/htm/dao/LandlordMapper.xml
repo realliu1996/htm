@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.LandlordDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.Landlord" id="LandlordResult">
+        <id property="landlordId" column="LANDLORD_ID" />
+        <result property="userId" column="USER_ID" />
+        <result property="landlordNick" column="LANDLORD_NICK" />
+        <result property="role" column="ROLE" />
+        <result property="landlordName" column="LANDLORD_NAME" />
+        <result property="landlordSex" column="LANDLORD_SEX" />
+        <result property="landlordBirth" column="LANDLORD_BIRTH" />
+        <result property="landlordAddr" column="LANDLORD_ADDR" />
+        <result property="landlordTel" column="LANDLORD_TEL" />
+        <result property="landlordMail" column="LANDLORD_MAIL" />
+        <result property="landlordWork" column="LANDLORD_WORK" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 新增房东 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="landlordId" parameterType="cn.realliu.htm.common.bean.Landlord" >
+        insert into LANDLORD(USER_ID,LANDLORD_NICK,ROLE,STATUS)
+        values(#{userId,jdbcType=INTEGER},#{landlordNick,jdbcType=VARCHAR},#{role,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 通过用户id查找房东信息 -->
+    <select id="selectByUserId" parameterType="Integer" resultMap="LandlordResult">
+            select *
+            from LANDLORD
+            where USER_ID= #{userId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 通过用户id修改房东信息 -->
+    <update id="update" parameterType="cn.realliu.htm.common.bean.Landlord">
+		update LANDLORD
+		set LANDLORD_NAME=#{landlordName,jdbcType=VARCHAR},LANDLORD_SEX=#{landlordSex,jdbcType=VARCHAR},
+		    LANDLORD_BIRTH=#{landlordBirth,jdbcType=VARCHAR},LANDLORD_ADDR=#{landlordAddr,jdbcType=VARCHAR},
+		    LANDLORD_TEL=#{landlordTel,jdbcType=VARCHAR},LANDLORD_MAIL=#{landlordMail,jdbcType=VARCHAR},
+		    LANDLORD_WORK=#{landlordWork,jdbcType=VARCHAR},STATUS=#{status,jdbcType=VARCHAR}
+		where USER_ID=#{userId}
+	</update>
+
+</mapper>

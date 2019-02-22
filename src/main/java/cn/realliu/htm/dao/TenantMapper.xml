@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.TenantDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.Tenant" id="TenantResult">
+        <id property="tenantId" column="TENANT_ID" />
+        <result property="userId" column="USER_ID" />
+        <result property="tenantNick" column="TENANT_NICK" />
+        <result property="role" column="ROLE" />
+        <result property="tenantName" column="TENANT_NAME" />
+        <result property="tenantSex" column="TENANT_SEX" />
+        <result property="tenantBirth" column="TENANT_BIRTH" />
+        <result property="tenantAddr" column="TENANT_ADDR" />
+        <result property="tenantTel" column="TENANT_TEL" />
+        <result property="tenantMail" column="TENANT_MAIL" />
+        <result property="tenantWork" column="TENANT_WORK" />
+        <result property="tenantIncome" column="TENANT_INCOME" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 新增租客 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="tenantId" parameterType="cn.realliu.htm.common.bean.Tenant" >
+        insert into TENANT(USER_ID,TENANT_NICK,ROLE,STATUS)
+        values(#{userId,jdbcType=INTEGER},#{tenantNick,jdbcType=VARCHAR},#{role,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 通过用户id查找租客信息 -->
+    <select id="selectByUserId" parameterType="Integer" resultMap="TenantResult">
+            select *
+            from TENANT
+            where USER_ID= #{userId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 通过用户id修改租客信息 -->
+    <update id="update" parameterType="cn.realliu.htm.common.bean.Tenant">
+		update TENANT
+		set TENANT_NAME=#{tenantName,jdbcType=VARCHAR},TENANT_SEX=#{tenantSex,jdbcType=VARCHAR},
+		    TENANT_BIRTH=#{tenantBirth,jdbcType=VARCHAR},TENANT_ADDR=#{tenantAddr,jdbcType=VARCHAR},
+		    TENANT_TEL=#{tenantTel,jdbcType=VARCHAR},TENANT_MAIL=#{tenantMail,jdbcType=VARCHAR},
+		    TENANT_WORK=#{tenantWork,jdbcType=VARCHAR},TENANT_INCOME=#{tenantIncome,jdbcType=VARCHAR},
+		    STATUS=#{status,jdbcType=VARCHAR}
+		where USER_ID=#{userId}
+	</update>
+
+</mapper>

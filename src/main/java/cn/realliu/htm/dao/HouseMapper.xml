@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.HouseDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.House" id="HouseResult">
+        <id property="houseId" column="HOUSE_ID" />
+        <result property="userId" column="USER_ID" />
+        <result property="community" column="COMMUNITY" />
+        <result property="buildNum" column="BUILD_NUM" />
+        <result property="layerNum" column="LAYER_NUM" />
+        <result property="roomNum" column="ROOM_NUM" />
+        <result property="houseArea" column="HOUSE_AREA" />
+        <result property="houseType" column="HOUSE_TYPE" />
+        <result property="located" column="LOCATED" />
+        <result property="position" column="POSITION" />
+        <result property="price" column="PRICE" />
+        <result property="agencyId" column="AGENCY_ID" />
+        <result property="agencyName" column="AGENCY_NAME" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 新增中介 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="houseId" parameterType="cn.realliu.htm.common.bean.House" >
+        insert into HOUSE(USER_ID,COMMUNITY,BUILD_NUM,LAYER_NUM,ROOM_NUM,HOUSE_AREA
+                          HOUSE_TYPE,LOCATED,POSITION,PRICE,AGENCY_ID,AGENCY_NAME,STATUS)
+        values(#{userId,jdbcType=INTEGER},#{community,jdbcType=VARCHAR},#{buildNum,jdbcType=VARCHAR},
+               #{layerNum,jdbcType=INTEGER},#{roomNum,jdbcType=INTEGER},#{houseArea,jdbcType=DOUBLE},
+               #{houseType,jdbcType=VARCHAR},#{located,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},
+               #{price,jdbcType=INTEGER},#{agencyId,jdbcType=INTEGER},#{agencyName,jdbcType=VARCHAR},
+               #{status,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>
