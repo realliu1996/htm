@@ -41,9 +41,9 @@
             <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-1.2-api:2.8.2" />
             <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Maven: com.alibaba:druid:1.1.10" />
-            <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.7" />
             <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
-            <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.7" />
+            <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" />
+            <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" />
           </element>
         </element>
       </root>
@@ -1074,6 +1074,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/500.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata/agencyInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata/systemInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata/landlordInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata" />
