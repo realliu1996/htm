@@ -2,6 +2,8 @@ package cn.realliu.htm.dao;
 
 import cn.realliu.htm.common.bean.Agency;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -21,5 +23,7 @@ public interface AgencyDao {
     //通过用户id修改中介信息
     void update(Agency agency);
 
+    //查找所有中介信息
+    List<Agency> selectAll(String status);
 
 }

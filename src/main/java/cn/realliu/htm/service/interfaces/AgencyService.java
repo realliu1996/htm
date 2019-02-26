@@ -3,6 +3,8 @@ package cn.realliu.htm.service.interfaces;
 import cn.realliu.htm.common.bean.Agency;
 import cn.realliu.htm.common.exception.CommonException;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -27,4 +29,12 @@ public interface AgencyService {
      * @throws CommonException
      */
     void update(Agency agency) throws CommonException;
+
+    /**
+     * 查找所有中介信息
+     * @param status 中介状态
+     * @return Agency 中介实体集合
+     * @throws CommonException
+     */
+    List<Agency> selectAll(String status)throws CommonException;
 }

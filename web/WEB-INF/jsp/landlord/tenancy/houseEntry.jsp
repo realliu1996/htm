@@ -251,7 +251,7 @@
                                                 </select>
                                             </div>
                                             <div id="secondHouse" class="col-sm-8" hidden="hidden">
-                                                <select class="form-control select2" style="width: 100%;" id="secondBuild" name="buildNum">
+                                                <select class="form-control select2" style="width: 100%;" id="secondBuild" name="buildNum" disabled="disabled">
                                                     <option selected="selected">--请选择--</option>
                                                     <option value="绿地香颂A栋">绿地香颂A栋</option>
                                                     <option value="绿地香颂B栋">绿地香颂B栋</option>
@@ -260,7 +260,7 @@
                                                 </select>
                                             </div>
                                             <div id="thirdHouse" class="col-sm-8" hidden="hidden">
-                                                <select class="form-control select2" style="width: 100%;" id="thirdBuild" name="buildNum">
+                                                <select class="form-control select2" style="width: 100%;" id="thirdBuild" name="buildNum" disabled="disabled">
                                                     <option selected="selected">--请选择--</option>
                                                     <option value="城开国际1栋">城开国际1栋</option>
                                                     <option value="城开国际2栋">城开国际2栋</option>
@@ -274,14 +274,14 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">层号</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="" name="layerNum">
+                                                <input type="text" class="form-control" placeholder="" name="layerNum" id="layerNum">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">房号</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="" name="roomNum">
+                                                <input type="text" class="form-control" placeholder="" name="roomNum" id="roomNum">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -368,7 +368,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">位置</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="" value="" name="position">
+                                                <input type="text" class="form-control" placeholder="" value="" name="position" id="position">
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -382,7 +382,12 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">中介</label>
                                             <div class="col-sm-8">
-                                                <input type="text"  class="form-control" placeholder="">
+                                                <select class="form-control select2" style="width: 100%;" name="agencyId">
+                                                    <option selected="selected">--请选择--</option>
+                                                    <c:forEach items="${allAgency}" var="agency">
+                                                    <option value="${agency.agencyId}"><c:out value="${agency.agencyName}"/></option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                         </div>
                                         <!-- /.form-group -->
@@ -449,9 +454,13 @@
 <script src="dist/js/toastr.js"></script>
 <script type="text/javascript">
 
+    var buildNum = "";
+    var layerNum = "";
+    var roomNum = "";
+
     $("#community").change(function () {
 
-        var community = $("#community option:selected").val();
+        community = $("#community option:selected").val();
 
         if (community == "红谷新城") {
             $("#firstHouse").removeAttr("hidden");
@@ -478,10 +487,41 @@
 
     });
 
-    $("#buildNum").change(function () {
-        var buildNum = $("#buildNum option:selected").val();
-        alert(buildNum);
+    $("#firstBuild").change(function () {
+        buildNum = $("#firstBuild option:selected").val();
+        $("#position").attr("value",buildNum);
     });
+
+    $("#secondBuild").change(function () {
+        buildNum = $("#secondBuild option:selected").val();
+        $("#position").attr("value",buildNum);
+    });
+
+    $("#thirdBuild").change(function () {
+        buildNum = $("#thirdBuild option:selected").val();
+        $("#position").attr("value",buildNum);
+    });
+
+    $("#layerNum").blur(function () {
+        layerNum = $("#layerNum").val();
+        if (layerNum != "") {
+            $("#position").attr("value",buildNum+layerNum+"层");
+        }else {
+            toastr.options.positionClass = 'toast-center-center';
+            toastr.info("层号不能为空");
+        }
+    })
+
+    $("#roomNum").blur(function () {
+        roomNum = $("#roomNum").val();
+        if (roomNum != "") {
+            $("#position").attr("value",buildNum+layerNum+"层"+roomNum+"号");
+        }else {
+            toastr.options.positionClass = 'toast-center-center';
+            toastr.info("房号不能为空");
+        }
+    })
+
 
 </script>
 </body>

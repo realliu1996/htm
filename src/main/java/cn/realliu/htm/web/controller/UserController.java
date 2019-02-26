@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -105,6 +106,8 @@ public class UserController {
                     session.setAttribute("landlord",landlord);
                     return "redirect:/showaddlandlord";
                 } else if ("U".equals(landlord.getStatus())) {
+                    List<Agency> agencies = agencyService.selectAll("U");
+                    session.setAttribute("allAgency",agencies);
                     session.setAttribute("landlord",landlord);
                     return "redirect:/showlandlordinfo";
                 } else {

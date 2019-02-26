@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -66,6 +68,26 @@ public class AgencyServiceImpl implements AgencyService {
         }
 
         agencyDao.update(agency);
-
     }
+
+    /**
+     * 查找所有中介信息
+     * @param status 中介状态
+     * @return Agency 中介实体集合
+     * @throws CommonException
+     */
+    @Override
+    public List<Agency> selectAll(String status)throws CommonException {
+        if (StringUtils.isBlank(status)){
+            throw CommonException.getException(401);
+        }
+
+        List<Agency> agencies = agencyDao.selectAll(status);
+
+        if (agencies == null && agencies.isEmpty()){
+            throw  CommonException.getException(404);
+        }
+        return agencies;
+    }
+
 }

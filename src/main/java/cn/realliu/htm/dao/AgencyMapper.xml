@@ -41,4 +41,11 @@
 		where USER_ID=#{userId}
 	</update>
 
+    <!-- 查找所有中介信息 -->
+    <select id="selectAll" parameterType="String" resultMap="AgencyResult">
+            select *
+            from AGENCY
+            where STATUS= #{status,jdbcType=VARCHAR}
+    </select>
+
 </mapper>
