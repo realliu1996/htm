@@ -9,7 +9,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/rearPage/login.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/frontPage/index.jsp</welcome-file>
     </welcome-file-list>
 
     <error-page>

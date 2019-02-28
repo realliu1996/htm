@@ -54,6 +54,9 @@ public class House {
     //中介名称
     private String agencyName;
 
+    //房屋图片名称
+    private String image;
+
     //房屋图片路径
     private String imagePath;
 
@@ -162,6 +165,14 @@ public class House {
 
     public void setAgencyName(String agencyName) {
         this.agencyName = agencyName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getImagePath() {

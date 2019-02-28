@@ -18,6 +18,8 @@ import java.util.Properties;
 @Controller
 public class ShowPageController {
 
+    /*后台页面*/
+
     @RequestMapping(value = "/showlogin",method = RequestMethod.GET)
     public String showLogin() {
         return "rearPage/login";
@@ -112,6 +114,19 @@ public class ShowPageController {
         String system = osName+"-"+osArch+"-"+osVersion;
 
         return system;
+    }
+
+
+    /*前台页面*/
+
+    @RequestMapping(value = "/showIndex",method = RequestMethod.GET)
+    public String showIndex() {
+        return "frontPage/index";
+    }
+
+    @RequestMapping(value = "/showHousing",method = RequestMethod.GET)
+    public String showHousing() {
+        return "frontPage/housing";
     }
 
 }

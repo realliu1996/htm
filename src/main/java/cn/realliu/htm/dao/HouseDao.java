@@ -2,6 +2,8 @@ package cn.realliu.htm.dao;
 
 import cn.realliu.htm.common.bean.House;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -14,4 +16,7 @@ public interface HouseDao {
 
     //新增房屋
     void insert(House house);
+
+    //查询所有房屋信息
+    List<House> selectAll(String status);
 }

@@ -316,6 +316,7 @@
                                         <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
                                             <button class="btn btn-sm btn-success fileinput-button" type="button">上传</button>
                                             <input type="file" id="file" onchange="uploadImg()" style="position:absolute;top:0;left:0;font-size:34px; opacity:0">
+                                            <input type="hidden" name="image" id="imageName">
                                             <input type="hidden" name="imagePath" id="imagePath">
                                             <span id="fileName"></span>
                                         </div>
@@ -559,6 +560,7 @@
                     if(data.code == 0) {
                         //图片显示
                         $("#imagePath").attr("value",data.url);
+                        $("#imageName").attr("value",data.title);
                         $("#image").attr("src","https://www.realliu.cn/images/"+data.title);
                         $("#fileName").html(data.filename);
                     }else {

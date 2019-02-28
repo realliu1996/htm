@@ -1081,6 +1081,8 @@
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/500.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata/agencyInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata/systemInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/agency/basicdata" />
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/frontPage/housing.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/frontPage" />
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/frontPage/index.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/frontPage" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata/landlordInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata/systemInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/tenancy/houseEntry.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/tenancy" />

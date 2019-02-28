@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -40,5 +41,18 @@ public class HouseController {
         }
     }
 
+    //查询所有房屋信息
+    @RequestMapping(value = "/selectAll",method = RequestMethod.GET)
+    public String selectAll(HttpSession session){
+        try {
+            List<House> houses = houseService.selectAll("U");
+            session.setAttribute("houses",houses);
+            return "redirect:/showHousing";
+        } catch (CommonException e) {
+            e.printStackTrace();
+            session.setAttribute("msg","无房源信息");
+            return "redirect:/showHousing";
+        }
+    }
 
 }

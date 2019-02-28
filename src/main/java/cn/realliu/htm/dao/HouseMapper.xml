@@ -17,6 +17,7 @@
         <result property="price" column="PRICE" />
         <result property="agencyId" column="AGENCY_ID" />
         <result property="agencyName" column="AGENCY_NAME" />
+        <result property="image" column="IMAGE" />
         <result property="imagePath" column="IMAGE_PATH" />
         <result property="status" column="STATUS" />
     </resultMap>
@@ -24,12 +25,19 @@
     <!-- 新增房屋信息 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="houseId" parameterType="cn.realliu.htm.common.bean.House" >
         insert into HOUSE(USER_ID,COMMUNITY,BUILD_NUM,LAYER_NUM,ROOM_NUM,HOUSE_AREA,HOUSE_TYPE,
-                          LOCATED,POSITION,PRICE,AGENCY_ID,AGENCY_NAME,IMAGE_PATH,STATUS)
+                          LOCATED,POSITION,PRICE,AGENCY_ID,AGENCY_NAME,IMAGE,IMAGE_PATH,STATUS)
         values(#{userId,jdbcType=INTEGER},#{community,jdbcType=VARCHAR},#{buildNum,jdbcType=VARCHAR},
                #{layerNum,jdbcType=INTEGER},#{roomNum,jdbcType=INTEGER},#{houseArea,jdbcType=DOUBLE},
                #{houseType,jdbcType=VARCHAR},#{located,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},
                #{price,jdbcType=INTEGER},#{agencyId,jdbcType=INTEGER},#{agencyName,jdbcType=VARCHAR},
-               #{imagePath,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+               #{image,jdbcType=VARCHAR},#{imagePath,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
     </insert>
+
+    <!-- 查询所有房屋信息 -->
+    <select id="selectAll" parameterType="String" resultMap="HouseResult">
+            select *
+            from HOUSE
+            where STATUS= #{status,jdbcType=VARCHAR}
+    </select>
 
 </mapper>
