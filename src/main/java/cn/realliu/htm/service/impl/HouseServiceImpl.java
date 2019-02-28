@@ -1,5 +1,6 @@
 package cn.realliu.htm.service.impl;
 
+import cn.realliu.htm.common.bean.Agency;
 import cn.realliu.htm.common.bean.House;
 import cn.realliu.htm.common.exception.CommonException;
 import cn.realliu.htm.dao.AgencyDao;
@@ -46,7 +47,14 @@ public class HouseServiceImpl implements HouseService {
             throw CommonException.getException(401);
         }
 
+        Agency agency = agencyDao.selectByAgencyId(house.getAgencyId());
 
+        if (agency == null){
+            throw CommonException.getException(404);
+        }
+
+        house.setAgencyName(agency.getAgencyName());
+        house.setStatus("U");
 
         houseDao.insert(house);
 

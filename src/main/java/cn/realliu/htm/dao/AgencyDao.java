@@ -20,6 +20,9 @@ public interface AgencyDao {
     //通过用户id查找中介信息
     Agency selectByUserId(Integer userId);
 
+    //通过中介id查找中介信息
+    Agency selectByAgencyId(Integer agencyId);
+
     //通过用户id修改中介信息
     void update(Agency agency);
 

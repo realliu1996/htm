@@ -50,7 +50,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="start();">
 <div class="wrapper">
 
     <header class="main-header">
@@ -215,7 +215,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <form id="form" class="form-horizontal" enctype="multipart/form-data" action="#" method="get">
+            <form id="form" class="form-horizontal" action="house/addHouse" method="post">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -230,6 +230,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">小区</label>
                                             <div class="col-sm-8">
+                                                <input type="hidden" name="userId" value="${sessionScope.user.userId }">
                                                 <select class="form-control select2" style="width: 100%;" id="community" name="community">
                                                     <option selected="selected" value="红谷新城">红谷新城</option>
                                                     <option value="绿地香颂">绿地香颂</option>
@@ -465,6 +466,15 @@
     var buildNum = "";
     var layerNum = "";
     var roomNum = "";
+    var msg="${sessionScope.msg }";
+
+    function start() {
+        if (msg != ""){
+            toastr.options.positionClass = 'toast-center-center';
+            toastr.info(msg);
+            <c:remove var="msg" scope="session"/>
+        }
+    }
 
     $("#community").change(function () {
 
