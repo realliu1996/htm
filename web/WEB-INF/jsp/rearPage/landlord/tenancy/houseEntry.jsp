@@ -309,8 +309,8 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
-                                        <a class="thumbnail">
-                                            <img  id="image" src="" alt="" width="135px">
+                                        <a class="center-block thumbnail" style="height: 145px;">
+                                            <img  id="image" src="" alt="" width="130px">
                                         </a>
                                         <center>
                                         <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">

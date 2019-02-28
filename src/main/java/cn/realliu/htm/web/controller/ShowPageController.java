@@ -20,22 +20,22 @@ public class ShowPageController {
 
     @RequestMapping(value = "/showlogin",method = RequestMethod.GET)
     public String showLogin() {
-        return "login";
+        return "rearPage/login";
     }
 
     @RequestMapping(value = "/showregister",method = RequestMethod.GET)
     public String showRegister() {
-        return "register";
+        return "rearPage/register";
     }
 
     @RequestMapping(value = "/showaddtenant",method = RequestMethod.GET)
     public String showAddTenant() {
-        return "tenant/basicdata/addTenant";
+        return "rearPage/tenant/basicdata/addTenant";
     }
 
     @RequestMapping(value = "/showtenantinfo",method = RequestMethod.GET)
     public String showTenantInfo() {
-        return "tenant/basicdata/tenantInfo";
+        return "rearPage/tenant/basicdata/tenantInfo";
     }
 
     @RequestMapping(value = "/showtenantsystem",method = RequestMethod.GET)
@@ -43,17 +43,17 @@ public class ShowPageController {
 
         String system = getSystem();
         session.setAttribute("system",system);
-        return "tenant/basicdata/systemInfo";
+        return "rearPage/tenant/basicdata/systemInfo";
     }
 
     @RequestMapping(value = "/showaddlandlord",method = RequestMethod.GET)
     public String showAddLandlord() {
-        return "landlord/basicdata/addLandlord";
+        return "rearPage/landlord/basicdata/addLandlord";
     }
 
     @RequestMapping(value = "/showlandlordinfo",method = RequestMethod.GET)
     public String showLandlordInfo() {
-        return "landlord/basicdata/landlordInfo";
+        return "rearPage/landlord/basicdata/landlordInfo";
     }
 
     @RequestMapping(value = "/showlandlordsystem",method = RequestMethod.GET)
@@ -61,17 +61,17 @@ public class ShowPageController {
 
         String system = getSystem();
         session.setAttribute("system",system);
-        return "landlord/basicdata/systemInfo";
+        return "rearPage/landlord/basicdata/systemInfo";
     }
 
     @RequestMapping(value = "/showaddagency",method = RequestMethod.GET)
     public String showAddAgency() {
-        return "agency/basicdata/addAgency";
+        return "rearPage/agency/basicdata/addAgency";
     }
 
     @RequestMapping(value = "/showagencyinfo",method = RequestMethod.GET)
     public String showAgencyInfo() {
-        return "agency/basicdata/agencyInfo";
+        return "rearPage/agency/basicdata/agencyInfo";
     }
 
     @RequestMapping(value = "/showagencysystem",method = RequestMethod.GET)
@@ -79,7 +79,7 @@ public class ShowPageController {
 
         String system = getSystem();
         session.setAttribute("system",system);
-        return "agency/basicdata/systemInfo";
+        return "rearPage/agency/basicdata/systemInfo";
     }
 
     @RequestMapping(value = "/exitpage",method = RequestMethod.GET)
@@ -100,7 +100,7 @@ public class ShowPageController {
 
     @RequestMapping(value = "/showhouseentry",method = RequestMethod.GET)
     public String showHouseEntry() {
-        return "landlord/tenancy/houseEntry";
+        return "rearPage/landlord/tenancy/houseEntry";
     }
 
     public String getSystem(){
