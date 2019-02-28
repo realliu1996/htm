@@ -215,7 +215,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <form id="form" class="form-horizontal" action="#" method="get">
+            <form id="form" class="form-horizontal" enctype="multipart/form-data" action="#" method="get">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-6">
@@ -309,8 +309,16 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <a class="thumbnail">
-                                            <img src="dist/img/1.jpg" alt="房屋图片">
+                                            <img  id="image" src="" alt="" width="135px">
                                         </a>
+                                        <center>
+                                        <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
+                                            <button class="btn btn-sm btn-success fileinput-button" type="button">上传</button>
+                                            <input type="file" id="file" onchange="uploadImg()" style="position:absolute;top:0;left:0;font-size:34px; opacity:0">
+                                            <input type="hidden" name="imagePath" id="imagePath">
+                                            <span id="fileName"></span>
+                                        </div>
+                                        </center>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -521,6 +529,43 @@
             toastr.info("房号不能为空");
         }
     })
+
+    //ajax提交信息
+    function uploadImg() {
+
+        var formData = new FormData();
+        formData.append("file", $("#file")[0].files[0]);
+
+        if($("#file").val() != "") {
+            $.ajax({
+                url:"${pageContext.request.contextPath}/landlord/uploadFile",
+                type: "POST",
+                cache: false,
+                data :formData,
+                contentType: false,
+                processData: false,
+                dataType:"json",
+                success: function(data){
+                    if(data.code == 0) {
+                        //图片显示
+                        $("#imagePath").attr("value",data.url);
+                        $("#image").attr("src","https://www.realliu.cn/images/"+data.title);
+                        $("#fileName").html(data.filename);
+                    }else {
+                        toastr.options.positionClass = 'toast-center-center';
+                        toastr.info("上传失败");
+                    }
+                },
+                error: function () {
+                    toastr.options.positionClass = 'toast-center-center';
+                    toastr.info("上传失败");
+                },
+            });
+        } else {
+            toastr.options.positionClass = 'toast-center-center';
+            toastr.info("请先选择文件");
+        }
+    }
 
 
 </script>

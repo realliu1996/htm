@@ -1,5 +1,7 @@
 package cn.realliu.htm.common.bean;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -8,6 +10,7 @@ package cn.realliu.htm.common.bean;
  * @Time: 11:28
  * @Description：用户实体
  */
+@Component
 public class User {
 
     private static final long serialVersionUID = 1L;

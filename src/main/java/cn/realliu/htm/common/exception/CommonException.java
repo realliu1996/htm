@@ -26,6 +26,9 @@ public class CommonException extends Exception {
         errmsgMap.put(404,"查询结果为空");
         errmsgMap.put(405,"用户未启用");
         errmsgMap.put(406,"未知错误");
+        errmsgMap.put(407,"目录不存在");
+        errmsgMap.put(408,"文件读取错误");
+        errmsgMap.put(409,"sftp连接出错");
         exceptionMap.put(501,new CommonException(501,getMessage(501)));
     }
 

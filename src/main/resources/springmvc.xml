@@ -16,6 +16,10 @@
     <!-- 配置@Controller处理器，包扫描器 -->
     <context:component-scan base-package="cn.realliu.htm.web.controller" />
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+        <property name="maxUploadSize" value="10485760" />
+    </bean>
+
     <!--配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -54,6 +58,7 @@
             </list>
         </property>
     </bean>
+
     <!-- 扫描注解的驱动 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -61,6 +66,7 @@
             <ref bean="mappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
 
 
 </beans>
