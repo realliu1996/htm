@@ -83,4 +83,26 @@ public class HouseServiceImpl implements HouseService {
         return houses;
     }
 
+
+    /**
+     * 按时间查找所有房屋信息
+     * @param status 房屋状态
+     * @return House 房屋实体集合
+     * @throws CommonException
+     */
+    public List<House> selectOrder(String status) throws CommonException {
+
+        if (StringUtils.isBlank(status)){
+            throw CommonException.getException(401);
+        }
+
+        List<House> houses = houseDao.selectOrder(status);
+
+        if (houses == null && houses.isEmpty()){
+            throw  CommonException.getException(404);
+        }
+
+        return houses;
+    }
+
 }

@@ -19,4 +19,7 @@ public interface HouseDao {
 
     //查询所有房屋信息
     List<House> selectAll(String status);
+
+    //按时间查询所有房屋信息
+    List<House> selectOrder(String status);
 }

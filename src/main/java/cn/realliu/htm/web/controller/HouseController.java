@@ -55,4 +55,24 @@ public class HouseController {
         }
     }
 
+    //查询推荐房屋信息
+    @RequestMapping(value = "/selectOrder",method = RequestMethod.GET)
+    public String selectOrder(HttpSession session){
+
+        try {
+            List<House> houseList = houseService.selectOrder("U");
+            if (houseList.size() < 5){
+                session.setAttribute("msg","无房源信息");
+                return "redirect:/showlogin";
+            }
+            session.setAttribute("houseList",houseList);
+            return "redirect:/showIndex";
+        } catch (CommonException e) {
+            e.printStackTrace();
+            session.setAttribute("msg","无房源信息");
+            return "redirect:/showlogin";
+        }
+
+    }
+
 }

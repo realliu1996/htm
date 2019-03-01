@@ -9,7 +9,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/frontPage/index.jsp</welcome-file>
+        <welcome-file>house/selectOrder</welcome-file>
     </welcome-file-list>
 
     <error-page>
@@ -52,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/house/selectOrder</url-pattern>
     </servlet-mapping>
 
     <!--spring配置-->

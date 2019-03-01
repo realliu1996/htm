@@ -6,6 +6,7 @@
   description: 前台首页
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -31,7 +32,7 @@
 <div class="header">
     <div class="container">
         <div class="w3_agile_logo">
-            <h1><a href="index.html"><span>HTM</span>二手房屋租赁</a></h1>
+            <h1><a href="house/selectOrder"><span>HTM</span>二手房屋租赁</a></h1>
         </div>
         <div class="agile_header_social">
             <ul class="agileits_social_list">
@@ -55,6 +56,7 @@
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes">首页</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
+                                <li><a href="house/selectOrder">推荐</a></li>
                                 <li><a href="house/selectAll">房源</a></li>
                                 <li><a href="typography.html">中介</a></li>
                             </ul>
@@ -99,113 +101,103 @@
         </div>
         <div class="w3_services_grids">
             <div class="col-md-4 w3l_services_grid">
-                <div class="w3ls_services_grid agileits_services_grid">
+                <div class="w3ls_services_grid agileits_services_grid"  style="background: url('https://www.realliu.cn/images/${sessionScope.houseList[0].image}') no-repeat 0px 0px;
+                        background-size: cover;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;
+                        -ms-background-size: cover;
+                        border-bottom:3px solid #10b5fb;">
                     <div class="agile_services_grid1_sub">
-                        <p>$ 32,000</p>
+                        <p>￥${sessionScope.houseList[0].price} </p>
                     </div>
                     <div class="agileinfo_services_grid_pos">
                         <i class="fa fa-user-o" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="wthree_service_text">
-                    <h3>2 Bedroom house for rent</h3>
-                    <h4 class="w3_agileits_service">Reality Agency</h4>
-                    <ul>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        <li>(543)</li>
-                    </ul>
+                    <h3>${sessionScope.houseList[0].buildNum}</h3>
+                    <h4 class="w3_agileits_service">${sessionScope.houseList[0].houseArea}㎡</h4>
                 </div>
             </div>
             <div class="col-md-4 w3l_services_grid">
-                <div class="w3ls_services_grid agileits_services_grid2">
+                <div class="w3ls_services_grid agileits_services_grid2" style="	background: url('https://www.realliu.cn/images/${sessionScope.houseList[1].image}') no-repeat 0px 0px;
+                        background-size: cover;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;
+                        -ms-background-size: cover;
+                        border-bottom:3px solid #21e790;">
                     <div class="agile_services_grid1_sub agileits_w3layouts_ser_sub1">
-                        <p>$ 12,000</p>
+                        <p>￥${sessionScope.houseList[1].price}</p>
                     </div>
                     <div class="agileinfo_services_grid_pos agile_services_grid_pos1">
                         <i class="fa fa-bath" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="wthree_service_text">
-                    <h3>High rise Buildings for rent</h3>
-                    <h4 class="w3_agileits_service2">Reality Agency</h4>
-                    <ul>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                        <li>(4321)</li>
-                    </ul>
+                    <h3>${sessionScope.houseList[1].buildNum}</h3>
+                    <h4 class="w3_agileits_service2">${sessionScope.houseList[1].houseArea}㎡</h4>
                 </div>
             </div>
             <div class="col-md-4 w3l_services_grid">
-                <div class="w3ls_services_grid agileits_services_grid1">
+                <div class="w3ls_services_grid agileits_services_grid1" style="	background: url('https://www.realliu.cn/images/${sessionScope.houseList[2].image}') no-repeat 0px 0px;
+                        background-size: cover;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;
+                        -ms-background-size: cover;
+                        border-bottom:3px solid #e72121;">
                     <div class="agile_services_grid1_sub agileits_w3layouts_ser_sub">
-                        <p>$ 45,000</p>
+                        <p>￥${sessionScope.houseList[2].price}</p>
                     </div>
                     <div class="agileinfo_services_grid_pos agile_services_grid_pos">
                         <i class="fa fa-home" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="wthree_service_text">
-                    <h3>Big luxury house for rent</h3>
-                    <h4 class="w3_agileits_service1">Reality Agency</h4>
-                    <ul>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        <li>(854)</li>
-                    </ul>
+                    <h3>${sessionScope.houseList[2].buildNum}</h3>
+                    <h4 class="w3_agileits_service1">${sessionScope.houseList[2].houseArea}㎡</h4>
                 </div>
             </div>
             <div class="col-md-6 w3l_services_grid">
-                <div class="w3ls_services_grid agileits_services_grid3">
+                <div class="w3ls_services_grid agileits_services_grid3" style="	background: url('https://www.realliu.cn/images/${sessionScope.houseList[3].image}') no-repeat 0px 0px;
+                        background-size: cover;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;
+                        -ms-background-size: cover;
+                        border-bottom:3px solid #a821e7;">
                     <div class="agile_services_grid1_sub agileits_w3layouts_ser_sub2">
-                        <p>$ 23,543</p>
+                        <p>￥${sessionScope.houseList[3].price}</p>
                     </div>
                     <div class="agileinfo_services_grid_pos agile_services_grid_pos2">
                         <i class="fa fa-home" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="wthree_service_text">
-                    <h3>Low rise Buildings for rent</h3>
-                    <h4 class="w3_agileits_service3">Reality Agency</h4>
-                    <ul>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        <li>(231)</li>
-                    </ul>
+                    <h3>${sessionScope.houseList[3].buildNum}</h3>
+                    <h4 class="w3_agileits_service3">${sessionScope.houseList[3].houseArea}㎡</h4>
                 </div>
             </div>
             <div class="col-md-6 w3l_services_grid">
-                <div class="w3ls_services_grid agileits_services_grid4">
+                <div class="w3ls_services_grid agileits_services_grid4" style="	background: url('https://www.realliu.cn/images/${sessionScope.houseList[4].image}') no-repeat 0px 0px;
+                        background-size: cover;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;
+                        -ms-background-size: cover;
+                        border-bottom:3px solid #fbb810;">
                     <div class="agile_services_grid1_sub agileits_w3layouts_ser_sub3">
-                        <p>$ 45,426</p>
+                        <p>￥${sessionScope.houseList[4].price}</p>
                     </div>
                     <div class="agileinfo_services_grid_pos agile_services_grid_pos3">
                         <i class="fa fa-home" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="wthree_service_text">
-                    <h3>Low rise Buildings for rent</h3>
-                    <h4 class="w3_agileits_service4">Reality Agency</h4>
-                    <ul>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                        <li>(653)</li>
-                    </ul>
+                    <h3>${sessionScope.houseList[4].buildNum}</h3>
+                    <h4 class="w3_agileits_service4">${sessionScope.houseList[4].houseArea}㎡</h4>
                 </div>
             </div>
             <div class="clearfix"> </div>
@@ -222,19 +214,19 @@
         </div>
         <div class="w3layouts_skills_grids">
             <div class="col-md-3 w3ls_about_guage">
-                <h4>Make Money</h4>
+                <h4>房源品质</h4>
                 <canvas id="gauge1" width="200" height="100"></canvas>
             </div>
             <div class="col-md-3 w3ls_about_guage">
-                <h4>Matching Buyer</h4>
+                <h4>房源地段</h4>
                 <canvas id="gauge2" width="200" height="100"></canvas>
             </div>
             <div class="col-md-3 w3ls_about_guage">
-                <h4>Market Appraisals</h4>
+                <h4>房源价格</h4>
                 <canvas id="gauge3" width="200" height="100"></canvas>
             </div>
             <div class="col-md-3 w3ls_about_guage">
-                <h4>Support</h4>
+                <h4>服务质量</h4>
                 <canvas id="gauge4" width="200" height="100"></canvas>
             </div>
             <div class="clearfix"> </div>
@@ -289,9 +281,9 @@
 <script src="dist/js/jquery.gauge.js"></script>
 <script>
     $(document).ready(function (){
-        $("#gauge1").gauge(30,{color: "#fb5710",unit: " %",type: "halfcircle"});
-        $("#gauge2").gauge(70, {color: "#a821e7", unit: " %",type: "halfcircle"});
-        $("#gauge3").gauge(75, {color: "#fbb810",unit: " %",type: "halfcircle"});
+        $("#gauge1").gauge(90,{color: "#fb5710",unit: " %",type: "halfcircle"});
+        $("#gauge2").gauge(90, {color: "#a821e7", unit: " %",type: "halfcircle"});
+        $("#gauge3").gauge(95, {color: "#fbb810",unit: " %",type: "halfcircle"});
         $("#gauge4").gauge(90, {color: "#21d0e7",unit: " %",type: "halfcircle"});
     });
 </script>
@@ -301,34 +293,8 @@
 <!-- start-smooth-scrolling -->
 <script src="dist/js/move-top.js"></script>
 <script src="dist/js/easing.js"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){
-            event.preventDefault();
-            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-        });
-    });
-</script>
-<!-- start-smooth-scrolling -->
 <!-- for bootstrap working -->
 <script src="dist/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
-<!-- here stars scrolling icon -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        /*
-            var defaults = {
-            containerID: 'toTop', // fading element id
-            containerHoverID: 'toTopHover', // fading element hover id
-            scrollSpeed: 1200,
-            easingType: 'linear'
-            };
-        */
-
-        $().UItoTop({ easingType: 'easeOutQuart' });
-
-    });
-</script>
-<!-- //here ends scrolling icon -->
 </body>
 </html>

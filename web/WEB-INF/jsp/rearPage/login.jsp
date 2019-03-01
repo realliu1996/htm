@@ -47,7 +47,7 @@
 <body class="hold-transition login-page" style="height: 85%" onload="start();">
 <div class="login-box">
     <div class="login-logo">
-        <a href="/showlogin"><b>HTM</b>二手房屋租赁系统</a>
+        <a href="house/selectOrder"><b>HTM</b>二手房屋租赁系统</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

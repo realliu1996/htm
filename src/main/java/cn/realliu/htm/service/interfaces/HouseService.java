@@ -31,5 +31,13 @@ public interface HouseService {
      */
     List<House> selectAll(String status) throws CommonException;
 
+    /**
+     * 按时间查找所有房屋信息
+     * @param status 房屋状态
+     * @return House 房屋实体集合
+     * @throws CommonException
+     */
+    List<House> selectOrder(String status) throws CommonException;
+
 
 }

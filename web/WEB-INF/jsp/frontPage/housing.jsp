@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="w3_agile_logo">
-            <h1><a href="index.html"><span>HTM</span>二手房屋租赁</a></h1>
+            <h1><a href="house/selectOrder"><span>HTM</span>二手房屋租赁</a></h1>
         </div>
         <div class="agile_header_social">
             <ul class="agileits_social_list">
@@ -63,7 +63,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes">首页</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
-                                <li><a href="index.html">房源</a></li>
+                                <li><a href="house/selectOrder">推荐</a></li>
+                                <li><a href="house/selectAll">房源</a></li>
                                 <li><a href="typography.html">中介</a></li>
                             </ul>
                         </li>
@@ -83,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="typography.html">系统信息</a></li>
                             </ul>
                         </li>
-                        <li><a href="mail.html"><span>登录</span></a></li>
+                        <li><a href="/showlogin"><span>登录</span></a></li>
                     </ul>
                     <div class="w3_agileits_search_form">
                         <form action="#" method="post">
@@ -180,34 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- start-smooth-scrolling -->
 <script type="text/javascript" src="dist/js/move-top.js"></script>
 <script type="text/javascript" src="dist/js/easing.js"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){
-            event.preventDefault();
-            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-        });
-    });
-</script>
-<!-- start-smooth-scrolling -->
 <!-- for bootstrap working -->
 <script src="dist/js/bootstrap.js"></script>
-<!-- //for bootstrap working -->
-<!-- here stars scrolling icon -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        /*
-            var defaults = {
-            containerID: 'toTop', // fading element id
-            containerHoverID: 'toTopHover', // fading element hover id
-            scrollSpeed: 1200,
-            easingType: 'linear'
-            };
-        */
-
-        $().UItoTop({ easingType: 'easeOutQuart' });
-
-    });
-</script>
-<!-- //here ends scrolling icon -->
 </body>
 </html>

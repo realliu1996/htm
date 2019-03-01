@@ -40,4 +40,12 @@
             where STATUS= #{status,jdbcType=VARCHAR}
     </select>
 
+    <!-- 按时间查询所有房屋信息 -->
+    <select id="selectOrder" parameterType="String" resultMap="HouseResult">
+            select *
+            from HOUSE
+            where STATUS= #{status,jdbcType=VARCHAR}
+            order by PRICE desc
+    </select>
+
 </mapper>
