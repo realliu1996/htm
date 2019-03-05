@@ -47,7 +47,7 @@
 <body class="hold-transition register-page" style="height: 85%" onload="start();">
 <div class="register-box" style="height: 55%;">
     <div class="register-logo">
-        <a href="/showlogin"><b>HTM</b>二手房屋租赁系统</a>
+        <a href="house/selectOrder"><b>HTM</b>二手房屋租赁系统</a>
     </div>
 
     <div class="register-box-body">

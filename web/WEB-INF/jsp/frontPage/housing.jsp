@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome-icons -->
 </head>
-<body>
+<body onload="init()">
 <!-- header -->
 <div class="header">
     <div class="container">
@@ -41,12 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h1><a href="house/selectOrder"><span>HTM</span>二手房屋租赁</a></h1>
         </div>
         <div class="agile_header_social">
-            <ul class="agileits_social_list">
-                <li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-            </ul>
+            <br/>
+            <h4><span id="userInfo">未登录</span></h4>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -84,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="typography.html">系统信息</a></li>
                             </ul>
                         </li>
-                        <li><a href="/showlogin"><span>登录</span></a></li>
+                        <li><a id="inout" href="/showlogin"><span id="login">登录</span></a></li>
                     </ul>
                     <div class="w3_agileits_search_form">
                         <form action="#" method="post">
@@ -183,5 +179,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="dist/js/easing.js"></script>
 <!-- for bootstrap working -->
 <script src="dist/js/bootstrap.js"></script>
+<script>
+
+    var userName = "${sessionScope.user.userName }";
+
+    function init() {
+
+        if (userName !=""){
+            $('#userInfo').html("欢迎租客 "+userName);
+            $('#inout').attr("href","/exitIndex");
+            $('#login').html("注销");
+        }
+
+    }
+</script>
 </body>
 </html>

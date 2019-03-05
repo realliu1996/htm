@@ -26,8 +26,10 @@
     <link rel="stylesheet" href="dist/css/jquery-ui1.css">
     <!-- font-awesome-icons -->
     <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- toastr -->
+    <link rel="stylesheet" href="dist/css/toastr.css">
 </head>
-<body>
+<body onload="init()">
 <!-- header -->
 <div class="header">
     <div class="container">
@@ -35,12 +37,8 @@
             <h1><a href="house/selectOrder"><span>HTM</span>二手房屋租赁</a></h1>
         </div>
         <div class="agile_header_social">
-            <ul class="agileits_social_list">
-                <li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-            </ul>
+            <br/>
+            <h4><span id="userInfo">未登录</span></h4>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -77,7 +75,7 @@
                                 <li><a href="typography.html">系统信息</a></li>
                             </ul>
                         </li>
-                        <li><a href="/showlogin"><span>登录</span></a></li>
+                        <li><a id="inout" href="/showlogin"><span id="login">登录</span></a></li>
                     </ul>
                     <div class="w3_agileits_search_form">
                         <form action="#" method="post">
@@ -279,13 +277,37 @@
 <!-- //footer -->
 <!-- gauge-meter -->
 <script src="dist/js/jquery.gauge.js"></script>
+<!-- toastr -->
+<script src="dist/js/toastr.js"></script>
 <script>
+
+    var userName = "${sessionScope.user.userName }";
+    var msg = "${sessionScope.msg }";
+
     $(document).ready(function (){
         $("#gauge1").gauge(90,{color: "#fb5710",unit: " %",type: "halfcircle"});
         $("#gauge2").gauge(90, {color: "#a821e7", unit: " %",type: "halfcircle"});
         $("#gauge3").gauge(95, {color: "#fbb810",unit: " %",type: "halfcircle"});
         $("#gauge4").gauge(90, {color: "#21d0e7",unit: " %",type: "halfcircle"});
     });
+
+    function init() {
+
+        if (userName !=""){
+            $('#userInfo').html("欢迎租客 "+userName);
+            $('#inout').attr("href","/exitIndex");
+            $('#login').html("注销");
+        }
+
+        if (msg !=""){
+            toastr.options.positionClass = 'toast-center-center';
+            toastr.info(msg);
+            <c:remove var="msg" scope="session"/>
+        }
+
+    }
+
+
 </script>
 <!-- //gauge-meter -->
 <!-- range -->

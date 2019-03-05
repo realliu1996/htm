@@ -100,6 +100,22 @@ public class ShowPageController {
         return "redirect:/showlogin";
     }
 
+    @RequestMapping(value = "/exitIndex",method = RequestMethod.GET)
+    public String exitIndex(HttpSession session) {
+        session.removeAttribute("user");
+        session.removeAttribute("date");
+        if (session.getAttribute("tenant")!=null){
+            session.removeAttribute("tenant");
+        } else if (session.getAttribute("landlord")!=null){
+            session.removeAttribute("landlord");
+        } else if (session.getAttribute("agency")!=null){
+            session.removeAttribute("agency");
+        }
+
+        session.setAttribute("msg","当前用户已退出");
+        return "redirect:/showIndex";
+    }
+
     @RequestMapping(value = "/showhouseentry",method = RequestMethod.GET)
     public String showHouseEntry() {
         return "rearPage/landlord/tenancy/houseEntry";

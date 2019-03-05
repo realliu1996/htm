@@ -96,7 +96,7 @@ public class UserController {
                     return "redirect:/showaddtenant";
                 } else if ("U".equals(tenant.getStatus())) {
                     session.setAttribute("tenant", tenant);
-                    return "redirect:/showtenantinfo";
+                    return "redirect:/showIndex";
                 } else {
                     return "redirect:/showlogin";
                 }
