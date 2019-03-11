@@ -125,8 +125,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
             </c:forEach>
-
-
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <div class="col-md-4"></div>
+                <nav>
+                    <ul class="pagination">
+                        <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">尾页</a></li>
+                        <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+                </nav>
+            </div>
             <div class="clearfix"> </div>
         </div>
     </div>
@@ -187,6 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         if (userName !=""){
             $('#userInfo').html("欢迎租客 "+userName);
+            $('#userInfo').css("color","blue");
             $('#inout').attr("href","/exitIndex");
             $('#login').html("注销");
         }

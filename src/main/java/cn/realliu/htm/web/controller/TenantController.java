@@ -32,7 +32,7 @@ public class TenantController {
         try {
             tenantService.update(tenant);
             session.setAttribute("tenant",tenant);
-            return "redirect:/showtenantsystem";
+            return "redirect:/showIndex";
         } catch (CommonException e) {
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showaddtenant";
