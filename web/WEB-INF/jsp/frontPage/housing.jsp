@@ -332,9 +332,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- 模态框（Modal） -->
 
-
-
-<!-- start-smooth-scrolling -->
 <script type="text/javascript" src="dist/js/move-top.js"></script>
 <script type="text/javascript" src="dist/js/easing.js"></script>
 <!-- for bootstrap working -->

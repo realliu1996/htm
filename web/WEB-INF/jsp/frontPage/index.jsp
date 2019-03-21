@@ -433,8 +433,10 @@
 
 <!-- gauge-meter -->
 <script src="dist/js/jquery.gauge.js"></script>
+<!-- //gauge-meter -->
 <!-- toastr -->
 <script src="dist/js/toastr.js"></script>
+<!-- //toastr -->
 <script>
 
     var userName = "${sessionScope.user.userName }";
@@ -501,10 +503,7 @@
 
 
 </script>
-<!-- //gauge-meter -->
-<!-- range -->
 <script src="dist/js/jquery-ui.js"></script>
-<!-- start-smooth-scrolling -->
 <script src="dist/js/move-top.js"></script>
 <script src="dist/js/easing.js"></script>
 <!-- for bootstrap working -->
