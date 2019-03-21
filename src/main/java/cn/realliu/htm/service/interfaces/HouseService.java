@@ -39,5 +39,12 @@ public interface HouseService {
      */
     List<House> selectOrder(String status) throws CommonException;
 
+    /**
+     * 按房屋id查找房屋信息
+     * @param houseId 房屋id
+     * @return House 房屋实体集合
+     * @throws CommonException
+     */
+    House selectById(Integer houseId) throws CommonException;
 
 }

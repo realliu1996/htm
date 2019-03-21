@@ -43,7 +43,7 @@ public class House {
     private String located;
 
     //位置
-    private String Position;
+    private String position;
 
     //价格
     private Integer price;
@@ -136,11 +136,11 @@ public class House {
     }
 
     public String getPosition() {
-        return Position;
+        return position;
     }
 
     public void setPosition(String position) {
-        Position = position;
+        this.position = position;
     }
 
     public Integer getPrice() {

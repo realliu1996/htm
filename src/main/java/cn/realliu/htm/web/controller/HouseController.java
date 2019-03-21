@@ -1,12 +1,13 @@
 package cn.realliu.htm.web.controller;
 
 import cn.realliu.htm.common.bean.House;
+import cn.realliu.htm.common.bean.Landlord;
 import cn.realliu.htm.common.exception.CommonException;
 import cn.realliu.htm.service.interfaces.HouseService;
+import cn.realliu.htm.service.interfaces.LandlordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -25,6 +26,10 @@ public class HouseController {
 
     @Autowired
     HouseService houseService;
+    @Autowired
+    House newHouse;
+    @Autowired
+    LandlordService landlordService;
 
     //新增房屋信息
     @RequestMapping(value = "/addHouse",method = RequestMethod.POST)
@@ -71,6 +76,27 @@ public class HouseController {
             e.printStackTrace();
             session.setAttribute("msg","无房源信息");
             return "redirect:/showlogin";
+        }
+
+    }
+
+    //查询出租房屋信息
+    @ResponseBody
+    @RequestMapping(value = "/selectById",method = RequestMethod.POST)
+    public House selectById(@RequestParam("houseId") Integer houseId, HttpSession session){
+
+        try {
+            newHouse = houseService.selectById(houseId);
+
+            Landlord landlord = landlordService.selectByUserId(newHouse.getUserId());
+
+            newHouse.setImage(landlord.getLandlordNick());
+
+            return newHouse;
+        }catch (CommonException e){
+            e.printStackTrace();
+            newHouse.setHouseId(0);
+            return newHouse;
         }
 
     }

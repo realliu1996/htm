@@ -104,6 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="w3_services_grids">
 
             <c:forEach items="${houses}" var="houses">
+            <a onclick="house(${houses.houseId});">
             <div class="col-md-4 w3l_services_grid">
                 <div class="w3ls_services_grid agileits_services_grid" style="background: url('https://www.realliu.cn/images/${houses.image}') no-repeat 0px 0px;
                     background-size: cover;
@@ -124,6 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4 class="w3_agileits_service">${houses.houseArea}㎡</h4>
                 </div>
             </div>
+            </a>
             </c:forEach>
             <div class="col-md-9"></div>
             <div class="col-md-3">
@@ -184,6 +186,154 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!-- //footer -->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    租房申请
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">小区&nbsp;</p>
+						</span>
+                            <input id="community" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;栋号&nbsp;</p>
+						</span>
+                            <input id="buildNum" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">层号&nbsp;</p>
+						</span>
+                            <input id="layerNum" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;房号&nbsp;</p>
+						</span>
+                            <input id="roomNum" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">面积&nbsp;</p>
+						</span>
+                            <input id="houseArea" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;户型&nbsp;</p>
+						</span>
+                            <input id="houseType" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">坐落&nbsp;</p>
+						</span>
+                            <input id="located" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;位置&nbsp;</p>
+						</span>
+                            <input id="position" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">价格&nbsp;</p>
+						</span>
+                            <input id="price" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;中介&nbsp;</p>
+						</span>
+                            <input id="agencyName" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">房东&nbsp;</p>
+						</span>
+                            <input id="image" type="text" class="form-control" placeholder="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 in-gp-tl">
+                        <div class="input-group">
+						<span class="input-group-btn">
+							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;时间&nbsp;</p>
+						</span>
+                            <select class="form-control select2" style="width: 100%;" name="">
+                                <option selected="selected">--请选择--</option>
+                                <option value="6">半年</option>
+                                <option value="12">一年</option>
+                                <option value="24">两年</option>
+                                <option value="36">三年</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">
+                    提交申请
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+
+
+
 <!-- start-smooth-scrolling -->
 <script type="text/javascript" src="dist/js/move-top.js"></script>
 <script type="text/javascript" src="dist/js/easing.js"></script>
@@ -203,6 +353,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
     }
+
+
+    function house(houseId) {
+
+        $.ajax({
+            url:"${pageContext.request.contextPath}/house/selectById",
+            type: "POST",
+            data :{"houseId" : houseId},
+            dataType:"json",
+            success: function(data){
+                if(data.houseId != 0) {
+                    $('#community').val(data.community);
+                    $('#buildNum').val(data.buildNum);
+                    $('#layerNum').val(data.layerNum);
+                    $('#roomNum').val(data.roomNum);
+                    $('#houseArea').val(data.houseArea);
+                    $('#houseType').val(data.houseType);
+                    $('#located').val(data.located);
+                    $('#position').val(data.position);
+                    $('#price').val(data.price);
+                    $('#agencyName').val(data.agencyName);
+                    $('#image').val(data.image);
+
+                    $('#myModal').modal("show");
+                }else {
+                    toastr.options.positionClass = 'toast-center-center';
+                    toastr.info("无法申请");
+                }
+            },
+            error: function () {
+                toastr.options.positionClass = 'toast-center-center';
+                toastr.info("未知错误");
+            },
+        });
+
+    }
+
 </script>
 </body>
 </html>

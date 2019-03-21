@@ -48,4 +48,11 @@
             order by PRICE desc
     </select>
 
+    <!-- 按房屋id查询房屋信息 -->
+    <select id="selectById" parameterType="Integer" resultMap="HouseResult">
+            select *
+            from HOUSE
+            where HOUSE_ID= #{houseId,jdbcType=INTEGER}
+    </select>
+
 </mapper>

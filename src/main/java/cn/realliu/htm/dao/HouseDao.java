@@ -22,4 +22,7 @@ public interface HouseDao {
 
     //按时间查询所有房屋信息
     List<House> selectOrder(String status);
+
+    //按房屋id查询房屋信息
+    House selectById(Integer houseId);
 }

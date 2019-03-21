@@ -105,4 +105,26 @@ public class HouseServiceImpl implements HouseService {
         return houses;
     }
 
+    /**
+     * 按房屋id查找房屋信息
+     * @param houseId 房屋id
+     * @return House 房屋实体集合
+     * @throws CommonException
+     */
+    public House selectById(Integer houseId) throws CommonException{
+
+        if (houseId == 0){
+            throw CommonException.getException(401);
+        }
+
+        House house = houseDao.selectById(houseId);
+
+        if (house == null){
+            throw CommonException.getException(404);
+        }
+
+        return house;
+
+    }
+
 }
