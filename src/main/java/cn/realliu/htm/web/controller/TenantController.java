@@ -34,6 +34,7 @@ public class TenantController {
             session.setAttribute("tenant",tenant);
             return "redirect:/showIndex";
         } catch (CommonException e) {
+            e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showaddtenant";
         }

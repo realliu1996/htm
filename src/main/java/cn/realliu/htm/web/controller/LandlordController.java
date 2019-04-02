@@ -40,6 +40,7 @@ public class LandlordController {
             session.setAttribute("landlord",landlord);
             return "redirect:/showlandlordinfo";
         } catch (CommonException e) {
+            e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showaddlandlord";
         }

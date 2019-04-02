@@ -134,7 +134,7 @@
                 $.ajax({
                     url: "user/userNameCheck",
                     type: "post",
-                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
                     data: {"userName": userName},
                     dataType: "text",
                     success: function (data) {

@@ -34,6 +34,7 @@ public class AgencyController {
             session.setAttribute("agency",agency);
             return "redirect:/showagencyinfo";
         } catch (CommonException e) {
+            e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showaddagency";
         }

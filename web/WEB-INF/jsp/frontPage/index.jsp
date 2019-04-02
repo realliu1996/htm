@@ -290,6 +290,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <form id="tenantApplication">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
                         aria-hidden="true">×
@@ -307,6 +308,7 @@
 							<p class="list-group-item1">小区&nbsp;</p>
 						</span>
                             <input id="community" type="text" class="form-control" placeholder="" readonly="readonly">
+                            <input id="houseId" type="hidden" name="houseId"/>
                         </div>
                     </div>
                     <div class="col-lg-5 in-gp-tl">
@@ -409,7 +411,7 @@
 						<span class="input-group-btn">
 							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;时间&nbsp;</p>
 						</span>
-                            <select class="form-control select2" style="width: 100%;" name="">
+                            <select class="form-control select2" style="width: 100%;" name="rentalTime">
                                 <option selected="selected">--请选择--</option>
                                 <option value="6">半年</option>
                                 <option value="12">一年</option>
@@ -422,10 +424,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" id="application">
                     提交申请
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -447,6 +450,7 @@
         $("#gauge2").gauge(90, {color: "#a821e7", unit: " %",type: "halfcircle"});
         $("#gauge3").gauge(95, {color: "#fbb810",unit: " %",type: "halfcircle"});
         $("#gauge4").gauge(90, {color: "#21d0e7",unit: " %",type: "halfcircle"});
+
     });
 
     function init() {
@@ -487,6 +491,8 @@
                     $('#agencyName').val(data.agencyName);
                     $('#image').val(data.image);
 
+                    $('#houseId').val(data.houseId);
+
                     $('#myModal').modal("show");
                 }else {
                     toastr.options.positionClass = 'toast-center-center';
@@ -500,6 +506,34 @@
         });
 
     }
+
+    $("#application").click(function () {
+
+        var data = $("#tenantApplication").serialize();
+
+        $.ajax({
+            url:"${pageContext.request.contextPath}/tenantApplication/addTenantApplication",
+            type:"POST",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data:data,
+            dataType:"text",
+            success:function(data){
+                if (data == "true") {
+                    $("#myModal").modal('hide');
+                    toastr.options.positionClass = 'toast-center-center';
+                    toastr.info("申请成功");
+                }else {
+                    toastr.options.positionClass = 'toast-center-center';
+                    toastr.info("申请失败");
+                }
+            },
+            error:function(){
+                toastr.options.positionClass = 'toast-center-center';
+                toastr.info("申请失败");
+            }
+        });
+
+    });
 
 
 </script>

@@ -32,6 +32,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- font-awesome-icons -->
     <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome-icons -->
+    <!-- toastr -->
+    <link rel="stylesheet" href="dist/css/toastr.css">
 </head>
 <body onload="init()">
 <!-- header -->
@@ -191,6 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <form id="tenantApplication">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
                         aria-hidden="true">×
@@ -208,6 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<p class="list-group-item1">小区&nbsp;</p>
 						</span>
                             <input id="community" type="text" class="form-control" placeholder="" readonly="readonly">
+                            <input id="houseId" type="hidden" name="houseId"/>
                         </div>
                     </div>
                     <div class="col-lg-5 in-gp-tl">
@@ -310,7 +314,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span class="input-group-btn">
 							<p class="list-group-item1">&nbsp;&nbsp;&nbsp;时间&nbsp;</p>
 						</span>
-                            <select class="form-control select2" style="width: 100%;" name="">
+                            <select class="form-control select2" style="width: 100%;" name="rentalTime">
                                 <option selected="selected">--请选择--</option>
                                 <option value="6">半年</option>
                                 <option value="12">一年</option>
@@ -323,10 +327,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" id="application">
                     提交申请
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -336,6 +341,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="dist/js/easing.js"></script>
 <!-- for bootstrap working -->
 <script src="dist/js/bootstrap.js"></script>
+<!-- toastr -->
+<script src="dist/js/toastr.js"></script>
 <script>
 
     var userName = "${sessionScope.user.userName }";
@@ -373,6 +380,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $('#agencyName').val(data.agencyName);
                     $('#image').val(data.image);
 
+                    $('#houseId').val(data.houseId);
+
                     $('#myModal').modal("show");
                 }else {
                     toastr.options.positionClass = 'toast-center-center';
@@ -386,6 +395,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
 
     }
+
+    $("#application").click(function () {
+
+        var data = $("#tenantApplication").serialize();
+
+        $.ajax({
+            url:"${pageContext.request.contextPath}/tenantApplication/addTenantApplication",
+            type:"POST",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            data:data,
+            dataType:"text",
+            success:function(data){
+                if (data == "true") {
+                    $("#myModal").modal('hide');
+                    toastr.options.positionClass = 'toast-center-center';
+                    toastr.info("申请成功");
+                }else {
+                    toastr.options.positionClass = 'toast-center-center';
+                    toastr.info("申请失败");
+                }
+            },
+            error:function(){
+                toastr.options.positionClass = 'toast-center-center';
+                toastr.info("申请失败");
+            }
+        });
+
+    });
 
 </script>
 </body>

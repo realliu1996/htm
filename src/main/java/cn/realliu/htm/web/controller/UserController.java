@@ -51,6 +51,7 @@ public class UserController {
             session.setAttribute("msg","注册成功！请登录");
             return "redirect:/showlogin";
         } catch (CommonException e) {
+            e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showregister";
         }
@@ -72,6 +73,7 @@ public class UserController {
             }
 
         } catch (CommonException e) {
+            e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
             return "error";
         }
@@ -129,6 +131,7 @@ public class UserController {
             }
 
         } catch (CommonException e) {
+            e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showlogin";
         }

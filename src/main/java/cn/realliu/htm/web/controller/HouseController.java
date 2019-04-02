@@ -87,11 +87,8 @@ public class HouseController {
 
         try {
             newHouse = houseService.selectById(houseId);
-
             Landlord landlord = landlordService.selectByUserId(newHouse.getUserId());
-
             newHouse.setImage(landlord.getLandlordNick());
-
             return newHouse;
         }catch (CommonException e){
             e.printStackTrace();
