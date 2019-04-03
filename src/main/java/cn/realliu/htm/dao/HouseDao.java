@@ -1,6 +1,7 @@
 package cn.realliu.htm.dao;
 
 import cn.realliu.htm.common.bean.House;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface HouseDao {
 
     //按房屋id查询房屋信息
     House selectById(Integer houseId);
+
+    //按房屋id修改房屋状态
+    void updateStatus(@Param("houseId") Integer houseId,@Param("status")String status);
 }

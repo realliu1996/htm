@@ -69,6 +69,7 @@ public class HouseServiceImpl implements HouseService {
      * @return House 房屋实体集合
      * @throws CommonException
      */
+    @Override
     public List<House> selectAll(String status) throws CommonException {
         if (StringUtils.isBlank(status)){
             throw CommonException.getException(401);
@@ -90,6 +91,7 @@ public class HouseServiceImpl implements HouseService {
      * @return House 房屋实体集合
      * @throws CommonException
      */
+    @Override
     public List<House> selectOrder(String status) throws CommonException {
 
         if (StringUtils.isBlank(status)){
@@ -111,6 +113,7 @@ public class HouseServiceImpl implements HouseService {
      * @return House 房屋实体集合
      * @throws CommonException
      */
+    @Override
     public House selectById(Integer houseId) throws CommonException{
 
         if (houseId == 0){
@@ -125,6 +128,21 @@ public class HouseServiceImpl implements HouseService {
 
         return house;
 
+    }
+
+    /**
+     * 按房屋id修改房屋状态
+     * @param houseId 房屋id
+     * @param status 房屋状态
+     * @throws CommonException
+     */
+    @Override
+    @Transactional(isolation=Isolation.DEFAULT,propagation=Propagation.REQUIRED,readOnly=false)
+    public void updateStatus(Integer houseId,String status) throws CommonException{
+        if (houseId == 0 || StringUtils.isBlank(status)){
+            throw CommonException.getException(401);
+        }
+        houseDao.updateStatus(houseId,status);
     }
 
 }

@@ -47,4 +47,12 @@ public interface HouseService {
      */
     House selectById(Integer houseId) throws CommonException;
 
+    /**
+     * 按房屋id修改房屋状态
+     * @param houseId 房屋id
+     * @param status 房屋状态
+     * @throws CommonException
+     */
+    void updateStatus(Integer houseId,String status) throws CommonException;
+
 }

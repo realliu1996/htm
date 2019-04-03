@@ -47,7 +47,7 @@ public class TenantApplicationController {
 
         try {
             House house = houseService.selectById(houseId);
-            if ("U".equals(house.getStatus())) {
+            if ("U".equals(house.getStatus()) && tenant != null) {
                 Landlord landlord = landlordService.selectByUserId(house.getUserId());
                 tenantApplication.setApplyType("T");//租客租房申请单类型
                 tenantApplication.setLandlordId(landlord.getLandlordId());//房东id

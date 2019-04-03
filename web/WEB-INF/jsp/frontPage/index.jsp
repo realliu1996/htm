@@ -519,9 +519,12 @@
             dataType:"text",
             success:function(data){
                 if (data == "true") {
-                    $("#myModal").modal('hide');
                     toastr.options.positionClass = 'toast-center-center';
                     toastr.info("申请成功");
+                    setTimeout(function(){
+                        $("#myModal").modal('hide');
+                        window.location.href = "house/selectOrder";
+                    },1000)
                 }else {
                     toastr.options.positionClass = 'toast-center-center';
                     toastr.info("申请失败");

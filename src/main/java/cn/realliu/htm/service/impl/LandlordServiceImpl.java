@@ -83,6 +83,7 @@ public class LandlordServiceImpl implements LandlordService {
      * @return File 上传文件实体
      * @throws CommonException
      */
+    @Override
     public File uploadPicture(MultipartFile uploadFile) throws CommonException, IOException {
 
         String filename = uploadFile.getOriginalFilename();

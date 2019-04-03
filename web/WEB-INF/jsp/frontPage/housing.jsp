@@ -16,6 +16,7 @@
 <head>
     <base href="<%=basePath%>">
     <title>二手房屋租赁系统</title>
+    <link rel="icon" href="image/index.ico"/>
     <!-- custom-theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -408,9 +409,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             dataType:"text",
             success:function(data){
                 if (data == "true") {
-                    $("#myModal").modal('hide');
                     toastr.options.positionClass = 'toast-center-center';
                     toastr.info("申请成功");
+                    setTimeout(function(){
+                        $("#myModal").modal('hide');
+                        window.location.href = "house/selectAll";
+                    },1000)
                 }else {
                     toastr.options.positionClass = 'toast-center-center';
                     toastr.info("申请失败");

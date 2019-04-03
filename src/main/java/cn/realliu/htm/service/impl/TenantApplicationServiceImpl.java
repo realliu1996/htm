@@ -3,6 +3,7 @@ package cn.realliu.htm.service.impl;
 import cn.realliu.htm.common.bean.TenantApplication;
 import cn.realliu.htm.common.exception.CommonException;
 import cn.realliu.htm.dao.TenantApplicationDao;
+import cn.realliu.htm.service.interfaces.HouseService;
 import cn.realliu.htm.service.interfaces.TenantApplicationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class TenantApplicationServiceImpl implements TenantApplicationService {
 
     @Autowired
     private TenantApplicationDao tenantApplicationDao;
+    @Autowired
+    private HouseService houseService;
 
     /**
      * 新增租房申请单
@@ -42,6 +45,8 @@ public class TenantApplicationServiceImpl implements TenantApplicationService {
         }
 
         tenantApplicationDao.insert(tenantApplication);
+
+        houseService.updateStatus(tenantApplication.getHouseId(),"E");
 
     }
 }

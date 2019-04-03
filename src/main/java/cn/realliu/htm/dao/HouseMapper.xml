@@ -55,4 +55,12 @@
             where HOUSE_ID= #{houseId,jdbcType=INTEGER}
     </select>
 
+    <!-- 按房屋id修改房屋状态-->
+    <update id="updateStatus">
+		update HOUSE
+		set STATUS=#{status,jdbcType=VARCHAR}
+		where HOUSE_ID=#{houseId,jdbcType=INTEGER}
+	</update>
+
+
 </mapper>
