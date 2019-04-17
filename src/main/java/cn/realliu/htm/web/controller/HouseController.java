@@ -98,4 +98,22 @@ public class HouseController {
 
     }
 
+    //根据条件查询房屋信息
+    @RequestMapping(value = "/selectByCond",method = RequestMethod.POST)
+    public String selectByCond(String community, Integer layerNum,String houseType,double houseArea,
+                               Integer price,HttpSession session){
+
+        try {
+            Landlord landlord = (Landlord) session.getAttribute("landlord");
+            List<House> condHouses = houseService.selectByCond(landlord.getUserId(), community, layerNum, houseType, houseArea, price);
+            session.setAttribute("condHouses",condHouses);
+            return "redirect:/showLandlordHome";
+        }catch (CommonException e){
+            e.printStackTrace();
+            return "redirect:/showLandlordHome";
+        }
+
+
+    }
+
 }

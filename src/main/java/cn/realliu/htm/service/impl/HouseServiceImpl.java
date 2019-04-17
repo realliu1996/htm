@@ -145,4 +145,23 @@ public class HouseServiceImpl implements HouseService {
         houseDao.updateStatus(houseId,status);
     }
 
+    /**
+     * 按条件查找房屋信息
+     * @param userId 用户id
+     * @param community 小区
+     * @param layerNum 楼层
+     * @param houseType 类型
+     * @param houseArea 面积
+     * @param price 价格
+     * @return House 房屋实体集合
+     * @throws CommonException
+     */
+    @Override
+    public List<House> selectByCond(Integer userId,String community, Integer layerNum,
+                                    String houseType,Double houseArea, Integer price) throws CommonException{
+        List<House> houses = houseDao.selectByCond(userId, community, layerNum, houseType, houseArea, price);
+
+        return houses;
+    }
+
 }

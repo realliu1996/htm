@@ -1087,6 +1087,7 @@
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata/landlordInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata/systemInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/basicdata" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/tenancy/houseEntry.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/landlord/tenancy" />
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/rearPage/landlord/home.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/rearPage/landlord" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/jsp/rearPage/tenant/basicdata/systemInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/jsp/rearPage/tenant/basicdata" />
       </map>
     </option>

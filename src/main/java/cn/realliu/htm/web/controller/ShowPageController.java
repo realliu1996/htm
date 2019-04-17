@@ -48,6 +48,11 @@ public class ShowPageController {
         return "rearPage/tenant/basicdata/systemInfo";
     }
 
+    @RequestMapping(value = "/showLandlordHome",method = RequestMethod.GET)
+    public String showLandlordHome() {
+        return "rearPage/landlord/home";
+    }
+
     @RequestMapping(value = "/showaddlandlord",method = RequestMethod.GET)
     public String showAddLandlord() {
         return "rearPage/landlord/basicdata/addLandlord";

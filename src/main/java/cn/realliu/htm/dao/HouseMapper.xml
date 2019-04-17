@@ -55,12 +55,34 @@
             where HOUSE_ID= #{houseId,jdbcType=INTEGER}
     </select>
 
-    <!-- 按房屋id修改房屋状态-->
+    <!-- 按房屋id修改房屋状态 -->
     <update id="updateStatus">
 		update HOUSE
 		set STATUS=#{status,jdbcType=VARCHAR}
 		where HOUSE_ID=#{houseId,jdbcType=INTEGER}
 	</update>
 
+    <!-- 按条件查询房屋信息 -->
+    <select id="selectByCond" resultMap="HouseResult">
+            select *
+            from HOUSE
+            where USER_ID= #{userId,jdbcType=INTEGER}
+            <if test="community!= null and community!= ''">
+                and COMMUNITY LIKE CONCAT(CONCAT('%',#{community,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="layerNum!= null">
+                and LAYER_NUM= #{layerNum,jdbcType=INTEGER}
+            </if>
+            <if test="houseType!= null and houseType!= ''">
+                and HOUSE_TYPE= #{houseType,jdbcType=VARCHAR}
+            </if>
+            <if test="houseArea!= null">
+                and HOUSE_AREA= #{houseArea,jdbcType=DOUBLE}
+            </if>
+            <if test="price!= null">
+                and PRICE= #{price,jdbcType=INTEGER}
+            </if>
+
+    </select>
 
 </mapper>

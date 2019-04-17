@@ -29,4 +29,8 @@ public interface HouseDao {
 
     //按房屋id修改房屋状态
     void updateStatus(@Param("houseId") Integer houseId,@Param("status")String status);
+
+    //按条件查询房屋信息
+    List<House> selectByCond(@Param("userId")Integer userId,@Param("community")String community, @Param("layerNum")Integer layerNum,
+                             @Param("houseType")String houseType,@Param("houseArea")Double houseArea, @Param("price")Integer price);
 }

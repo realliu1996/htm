@@ -135,7 +135,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../../index.html"><i class="fa fa-circle-o"></i> 我的房源</a></li>
+                        <li><a href="/showLandlordHome"><i class="fa fa-circle-o"></i> 我的房源</a></li>
                     </ul>
                 </li>
                 <li class="treeview" id="marketing">

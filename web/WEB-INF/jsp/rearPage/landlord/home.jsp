@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: 刘真
-  Date: 2019/1/22
-  Time: 10:25
-  description: 系统信息页面
+  Date: 2019/4/17
+  Time: 23:06
+  description: 房东首页
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -26,10 +27,6 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="plugins/iCheck/all.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -44,15 +41,14 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="">
 <div class="wrapper">
 
     <header class="main-header">
         <!-- Logo -->
-        <a class="logo">
+        <a href="../../index.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>H</b>TM</span>
             <!-- logo for regular state and mobile devices -->
@@ -110,7 +106,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>${sessionScope.user.userRole }-${sessionScope.user.userName }</p>
-                    <a><i class="fa fa-circle text-success"></i> 在线</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>
             <!-- search form -->
@@ -127,7 +123,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">导航</li>
-                <li class="treeview" id="dashboard">
+                <li class="treeview active" id="dashboard">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>首页</span>
                         <span class="pull-right-container">
@@ -135,15 +131,15 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/showLandlordHome"><i class="fa fa-circle-o"></i> 我的房源</a></li>
+                        <li class="active"><a href="/showLandlordHome"><i class="fa fa-circle-o"></i> 我的房源</a></li>
                     </ul>
                 </li>
                 <li class="treeview" id="marketing">
                     <a href="#">
                         <i class="fa fa-edit"></i> <span>房屋租赁</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li id="sales"><a href="/showhouseentry"><i class="fa fa-circle-o"></i> 房屋录入</a></li>
@@ -177,7 +173,7 @@
                     </ul>
                 </li>
 
-                <li class="treeview active" id="basis">
+                <li class="treeview" id="basis">
                     <a href="#">
                         <i class="fa fa-laptop"></i> <span>基础数据</span>
                         <span class="pull-right-container">
@@ -186,7 +182,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/showlandlordinfo"><i class="fa fa-circle-o"></i> 房东信息</a></li>
-                        <li class="active"><a href="/showlandlordsystem"><i class="fa fa-circle-o"></i> 系统信息</a></li>
+                        <li><a href="/showlandlordsystem"><i class="fa fa-circle-o"></i> 系统信息</a></li>
                     </ul>
                 </li>
 
@@ -200,75 +196,144 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                基础数据管理
-                <small>Basic data management</small>
+                我的房源
+                <small>My listing</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a>基础数据管理</a></li>
-                <li class="active">系统信息</li>
+                <li class="active">我的房源</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">系统版本</h3>
-                </div>
-                <!-- /.box-header -->
+            <div class="row">
                 <form class="form-horizontal" role="form" action="#" method="get">
-                    <div class="box-body">
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">搜索条件</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="col-md-4 form-group">
+                                    <label for="firstname" class="col-sm-4 control-label">小区</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="firstname" class="col-sm-4 control-label">楼层</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="firstname" class="col-sm-4 control-label">类型</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control select2" style="width: 100%;">
+                                            <option selected="selected">全部</option>
+                                            <option value="一室一厅一卫">一室一厅一卫</option>
+                                            <option value="两室一厅一卫">两室一厅一卫</option>
+                                            <option value="三室一厅一卫">三室一厅一卫</option>
+                                            <option value="三室两厅一卫">三室两厅一卫</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                        <table class="table table-bordered">
-                            <tr height="60px">
-                                <td width="10%" style="vertical-align:middle; text-align:center;">当前版本</td>
-                                <td width="35%" style="vertical-align:middle; text-align:left;">二手房屋租赁系统 1.0</td>
-                            </tr>
-                            <tr height="60px">
-                                <td style="vertical-align:middle; text-align:center;">操作系统</td>
-                                <td style="vertical-align:middle; text-align:left;">${sessionScope.system }</td>
-                            </tr>
-                            <tr height="60px">
-                                <td style="vertical-align:middle; text-align:center;">适用系统</td>
-                                <td style="vertical-align:middle; text-align:left;">windows 、 linux 、 MacOS</td>
-                            </tr>
-                        </table>
+                                <div class="col-md-4 form-group">
+                                    <label for="firstname" class="col-sm-4 control-label">面积</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
 
+                                <div class="col-md-4 form-group">
+                                    <label for="firstname" class="col-sm-4 control-label">价格</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <div class="col-md-6 form-group"></div>
+                                    <div class="col-md-3 form-group">
+                                        <button type="submit" class="btn btn-primary">查询</button>
+                                    </div>
+                                    <div class="col-md-2 form-group"></div>
+                                    <div class="col-md-3 form-group">
+                                        <button type="button" class="btn btn-primary">帮助</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
                     </div>
-                    <!-- /.box-body -->
-                </form>
-            </div>
+                    <!-- /.col -->
 
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">系统开发</h3>
+                </form>
+
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">搜索结果</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th style="width: 5%">序号</th>
+                                    <th style="width: 15%">小区</th>
+                                    <th style="width: 15%">栋号</th>
+                                    <th style="width: 5%">楼层</th>
+                                    <th style="width: 5%">房号</th>
+                                    <th style="width: 5%">面积</th>
+                                    <th style="width: 15%">类型</th>
+                                    <th style="width: 10%">坐落</th>
+                                    <th style="width: 15%">地址</th>
+                                    <th style="width: 5%">价格</th>
+                                    <th style="width: 5%">状态</th>
+                                </tr>
+
+                                <c:forEach items="${condHouses}" var="condHouses" varStatus="status">
+                                <tr>
+                                    <td>${status.index + 1}</td>
+                                    <td>${condHouses.community}</td>
+                                    <td>${condHouses.buildNum}</td>
+                                    <td>${condHouses.layerNum}</td>
+                                    <td>${condHouses.roomNum}</td>
+                                    <td>${condHouses.houseArea}</td>
+                                    <td>${condHouses.houseType}</td>
+                                    <td>${condHouses.located}</td>
+                                    <td>${condHouses.position}</td>
+                                    <td>${condHouses.price}</td>
+                                    <td>${condHouses.status}</td>
+                                </tr>
+                                </c:forEach>
+
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.box -->
                 </div>
-                <!-- /.box-header -->
-                <form class="form-horizontal" role="form" action="#" method="get">
-                    <div class="box-body">
-
-                        <table class="table table-bordered">
-                            <tr height="60px">
-                                <td width="10%" style="vertical-align:middle; text-align:center;">程序制作</td>
-                                <td width="35%" style="vertical-align:middle; text-align:left;">realliu</td>
-                            </tr>
-                            <tr height="60px">
-                                <td style="vertical-align:middle; text-align:center;">联系方式</td>
-                                <td style="vertical-align:middle; text-align:left;">111</td>
-                            </tr>
-                            <tr height="60px">
-                                <td style="vertical-align:middle; text-align:center;">程序网址</td>
-                                <td style="vertical-align:middle; text-align:left;">www.realliu.cn</td>
-                            </tr>
-                        </table>
-
-                    </div>
-                    <!-- /.box-body -->
-                </form>
+                <!-- /.col -->
             </div>
-
+            <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
@@ -284,21 +349,18 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="plugins/input-mask/jquery.inputmask.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- SlimScroll -->
+<!-- Slimscroll -->
 <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script type="text/javascript">
+
+
+
+</script>
 </body>
 </html>

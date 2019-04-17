@@ -1,14 +1,8 @@
 package cn.realliu.htm.web.controller;
 
-import cn.realliu.htm.common.bean.Agency;
-import cn.realliu.htm.common.bean.Landlord;
-import cn.realliu.htm.common.bean.Tenant;
-import cn.realliu.htm.common.bean.User;
+import cn.realliu.htm.common.bean.*;
 import cn.realliu.htm.common.exception.CommonException;
-import cn.realliu.htm.service.interfaces.AgencyService;
-import cn.realliu.htm.service.interfaces.LandlordService;
-import cn.realliu.htm.service.interfaces.TenantService;
-import cn.realliu.htm.service.interfaces.UserService;
+import cn.realliu.htm.service.interfaces.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +35,8 @@ public class UserController {
     private LandlordService landlordService;
     @Autowired
     private AgencyService agencyService;
+    @Autowired
+    private HouseService houseService;
 
     //用户注册
     @RequestMapping(value = "/userRegister",method = RequestMethod.POST)
@@ -109,9 +105,11 @@ public class UserController {
                     return "redirect:/showaddlandlord";
                 } else if ("U".equals(landlord.getStatus())) {
                     List<Agency> agencies = agencyService.selectAll("U");
+                    List<House> condHouses = houseService.selectByCond(landlord.getUserId(), null, null, null, null, null);
                     session.setAttribute("allAgency",agencies);
                     session.setAttribute("landlord",landlord);
-                    return "redirect:/showlandlordinfo";
+                    session.setAttribute("condHouses",condHouses);
+                    return "redirect:/showLandlordHome";
                 } else {
                     return "redirect:/showlogin";
                 }
