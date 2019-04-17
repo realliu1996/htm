@@ -145,4 +145,9 @@ public class ShowPageController {
         return "frontPage/housing";
     }
 
+    @RequestMapping(value = "/showAgency",method = RequestMethod.GET)
+    public String showAgency() {
+        return "frontPage/agency";
+    }
+
 }

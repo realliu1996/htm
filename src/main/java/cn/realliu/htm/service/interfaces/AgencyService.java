@@ -37,4 +37,12 @@ public interface AgencyService {
      * @throws CommonException
      */
     List<Agency> selectAll(String status)throws CommonException;
+
+    /**
+     * 根据中介id查找中介信息
+     * @param agencyId 中介id
+     * @return Agency 中介实体
+     * @throws CommonException
+     */
+    Agency selectByAgencyId(Integer agencyId) throws CommonException;
 }

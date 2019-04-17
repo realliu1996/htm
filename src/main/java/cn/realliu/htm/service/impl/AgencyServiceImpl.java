@@ -90,4 +90,25 @@ public class AgencyServiceImpl implements AgencyService {
         return agencies;
     }
 
+    /**
+     * 根据中介id查找中介信息
+     * @param agencyId 中介id
+     * @return Agency 中介实体
+     * @throws CommonException
+     */
+    @Override
+    public Agency selectByAgencyId(Integer agencyId) throws CommonException{
+
+        if (agencyId == 0){
+            throw CommonException.getException(401);
+        }
+
+        Agency agency = agencyDao.selectByAgencyId(agencyId);
+
+        if (agency == null){
+            throw CommonException.getException(404);
+        }
+        return agency;
+    }
+
 }

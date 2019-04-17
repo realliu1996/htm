@@ -64,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <ul class="dropdown-menu agile_short_dropdown">
                                 <li><a href="house/selectOrder">推荐</a></li>
                                 <li><a href="house/selectAll">房源</a></li>
-                                <li><a href="typography.html">中介</a></li>
+                                <li><a href="tenant/selectAllAgency">中介</a></li>
                             </ul>
                         </li>
                         <li><a href="properties.html"><span>我的申请</span></a></li>
