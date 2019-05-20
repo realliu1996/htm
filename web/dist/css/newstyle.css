@@ -1,0 +1,19 @@
+.in-gp-tl{
+    padding:0;
+}
+.in-gp-tl {
+    padding: 0 1em;
+}
+.input-group {
+    margin-bottom: 20px;
+}
+li.list-group-item1 {
+    font-size: 14px;
+    font-weight: 300;
+}
+.input-group-btn{
+    font-size: 14px;
+}
+.input-group-btn p {
+    margin: 2px;
+}

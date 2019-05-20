@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.LandlordApplicationDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.LandlordApplication" id="LandlordApplicationResult">
+        <id property="applyId" column="APPLY_ID" />
+        <result property="applyType" column="APPLY_TYPE" />
+        <result property="houseId" column="HOUSE_ID" />
+        <result property="community" column="COMMUNITY" />
+        <result property="landlordId" column="LANDLORD_ID" />
+        <result property="landlordName" column="LANDLORD_NAME" />
+        <result property="agencyId" column="AGENCY_ID" />
+        <result property="agencyName" column="AGENCY_NAME" />
+        <result property="status" column="STATUS" />
+        <result property="date" column="DATE" />
+    </resultMap>
+
+    <!-- 新增房屋录入申请单 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="applyId" parameterType="cn.realliu.htm.common.bean.LandlordApplication" >
+        insert into LANDLORD_APPLICATION(APPLY_TYPE,HOUSE_ID,COMMUNITY,LANDLORD_ID,LANDLORD_NAME,AGENCY_ID,AGENCY_NAME,STATUS,DATE)
+        values(#{applyType,jdbcType=VARCHAR},#{houseId,jdbcType=INTEGER},#{community,jdbcType=VARCHAR},#{landlordId,jdbcType=INTEGER},#{landlordName,jdbcType=VARCHAR},
+              #{agencyId,jdbcType=INTEGER},#{agencyName,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{date,jdbcType=DATE})
+    </insert>
+
+    <!-- 按条件查询申请单信息 -->
+    <select id="selectByCond" resultMap="LandlordApplicationResult">
+        select *
+        from LANDLORD_APPLICATION
+        <where>
+        <if test="landlordId!= null">
+            LANDLORD_ID= #{landlordId,jdbcType=INTEGER}
+        </if>
+        <if test="status!= null and status!= ''">
+            and STATUS= #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="agencyId!= null">
+            and AGENCY_ID= #{agencyId,jdbcType=INTEGER}
+        </if>
+        </where>
+    </select>
+
+    <!-- 通过申请单id修改申请单 -->
+    <update id="update">
+		update LANDLORD_APPLICATION
+		set STATUS= #{status,jdbcType=VARCHAR}
+		where APPLY_ID=#{applyId}
+	</update>
+
+</mapper>

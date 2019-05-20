@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.OrderDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.Order" id="OrderResult">
+        <id property="orderId" column="ORDER_ID" />
+        <result property="contractId" column="CONTRACT_ID" />
+        <result property="houseId" column="HOUSE_ID" />
+        <result property="tradeNo" column="TRADE_NO" />
+        <result property="amount" column="AMOUNT" />
+        <result property="subject" column="SUBJECT" />
+        <result property="body" column="BODY" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 新增订单 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="orderId" parameterType="cn.realliu.htm.common.bean.Order" >
+        insert into ALIPAY(CONTRACT_ID,HOUSE_ID,TRADE_NO,AMOUNT,SUBJECT,BODY,STATUS)
+        values(#{contractId,jdbcType=INTEGER},#{houseId,jdbcType=INTEGER},#{tradeNo,jdbcType=VARCHAR},
+                #{amount,jdbcType=VARCHAR},#{subject,jdbcType=VARCHAR},#{body,jdbcType=VARCHAR},
+                #{status,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 通过商户订单号查找订单 -->
+    <select id="selectByTradeNo" parameterType="String" resultMap="OrderResult">
+            select *
+            from ALIPAY
+            where TRADE_NO= #{tradeNo,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 通过商户订单号修改订单状态 -->
+    <update id="update">
+		update ALIPAY
+		set STATUS=#{status,jdbcType=VARCHAR}
+		where TRADE_NO= #{tradeNo,jdbcType=VARCHAR}
+	</update>
+
+
+</mapper>

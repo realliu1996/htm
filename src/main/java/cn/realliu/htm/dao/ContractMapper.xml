@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.realliu.htm.dao.ContractDao">
+
+    <resultMap type="cn.realliu.htm.common.bean.Contract" id="ContractResult">
+        <id property="contractId" column="CONTRACT_ID" />
+        <result property="houseId" column="HOUSE_ID" />
+        <result property="community" column="COMMUNITY" />
+        <result property="landlordId" column="LANDLORD_ID" />
+        <result property="landlordName" column="LANDLORD_NAME" />
+        <result property="tenantId" column="TENANT_ID" />
+        <result property="tenantName" column="TENANT_NAME" />
+        <result property="agencyId" column="AGENCY_ID" />
+        <result property="agencyName" column="AGENCY_NAME" />
+        <result property="rentalPrice" column="RENTAL_PRICE" />
+        <result property="rentalTime" column="RENTAL_TIME" />
+        <result property="startTime" column="START_TIME" />
+        <result property="endTime" column="END_TIME" />
+        <result property="landlordConfirm" column="LANDLORD_CONFIRM" />
+        <result property="tenantConfirm" column="TENANT_CONFIRM" />
+        <result property="payment" column="PAYMENT" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 新增合同 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="contractId" parameterType="cn.realliu.htm.common.bean.Contract" >
+        insert into CONTRACT(HOUSE_ID,COMMUNITY,LANDLORD_ID,LANDLORD_NAME,TENANT_ID,TENANT_NAME,AGENCY_ID,
+                              AGENCY_NAME,RENTAL_PRICE,RENTAL_TIME,START_TIME,END_TIME,LANDLORD_CONFIRM,
+                              TENANT_CONFIRM,PAYMENT,STATUS)
+        values(#{houseId,jdbcType=INTEGER},#{community,jdbcType=VARCHAR},#{landlordId,jdbcType=INTEGER},#{landlordName,jdbcType=VARCHAR},
+                #{tenantId,jdbcType=INTEGER},#{tenantName,jdbcType=VARCHAR},#{agencyId,jdbcType=INTEGER},#{agencyName,jdbcType=VARCHAR},
+                #{rentalPrice,jdbcType=INTEGER},#{rentalTime,jdbcType=INTEGER},#{startTime,jdbcType=VARCHAR},#{endTime,jdbcType=VARCHAR},
+                #{landlordConfirm,jdbcType=VARCHAR},#{tenantConfirm,jdbcType=VARCHAR},#{payment,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 通过房东id和合同状态查找合同信息 -->
+    <select id="selectByLandlordId" resultMap="ContractResult">
+            select *
+            from CONTRACT
+            where LANDLORD_ID= #{landlordId,jdbcType=INTEGER}
+            and STATUS= #{status,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 通过合同id查找合同信息 -->
+    <select id="selectByContractId" parameterType="Integer" resultMap="ContractResult">
+            select *
+            from CONTRACT
+            where CONTRACT_ID= #{contractId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 通过合同id修改合同状态 -->
+    <update id="update">
+		update CONTRACT
+		set LANDLORD_CONFIRM=#{landlordConfirm,jdbcType=VARCHAR},TENANT_CONFIRM=#{tenantConfirm,jdbcType=VARCHAR},STATUS=#{status,jdbcType=VARCHAR}
+		where CONTRACT_ID=#{contractId,jdbcType=INTEGER}
+	</update>
+
+    <!-- 付款成功修改合同状态 -->
+    <update id="updateForPay">
+		update CONTRACT
+		set LANDLORD_CONFIRM=#{landlordConfirm,jdbcType=VARCHAR},TENANT_CONFIRM=#{tenantConfirm,jdbcType=VARCHAR},PAYMENT=#{payment,jdbcType=VARCHAR},STATUS=#{status,jdbcType=VARCHAR}
+		where CONTRACT_ID=#{contractId,jdbcType=INTEGER}
+	</update>
+
+    <!-- 通过租客id和合同状态查找合同信息 -->
+    <select id="selectByTenantId" resultMap="ContractResult">
+            select *
+            from CONTRACT
+            <where>
+                <if test="tenantId!= null">
+                    TENANT_ID= #{tenantId,jdbcType=INTEGER}
+                </if>
+                <if test="status!= null and status!= ''">
+                    and STATUS= #{status,jdbcType=VARCHAR}
+                </if>
+            </where>
+    </select>
+
+    <!-- 通过房东租客查询合同信息 -->
+    <select id="selectForAgency" resultMap="ContractResult">
+        select *
+        from CONTRACT
+        <where>
+            <if test="landlordName!= null and landlordName!= ''">
+                LANDLORD_NAME= #{landlordName,jdbcType=VARCHAR}
+            </if>
+            <if test="tenantName!= null and tenantName!= ''">
+                and TENANT_NAME= #{tenantName,jdbcType=VARCHAR}
+            </if>
+            <if test="agencyId!= null">
+                and AGENCY_ID= #{agencyId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+</mapper>
