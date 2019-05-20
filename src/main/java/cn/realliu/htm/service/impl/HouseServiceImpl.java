@@ -1,11 +1,12 @@
 package cn.realliu.htm.service.impl;
 
-import cn.realliu.htm.common.bean.Agency;
-import cn.realliu.htm.common.bean.House;
+import cn.realliu.htm.common.bean.*;
 import cn.realliu.htm.common.exception.CommonException;
 import cn.realliu.htm.dao.AgencyDao;
 import cn.realliu.htm.dao.HouseDao;
+import cn.realliu.htm.dao.LandlordDao;
 import cn.realliu.htm.service.interfaces.HouseService;
+import cn.realliu.htm.service.interfaces.LandlordApplicationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +34,14 @@ public class HouseServiceImpl implements HouseService {
     private HouseDao houseDao;
     @Autowired
     private AgencyDao agencyDao;
+    @Autowired
+    private LandlordDao landlordDao;
+    @Autowired
+    LandlordApplicationService landlordApplicationService;
+    @Autowired
+    private LandlordApplication landlordApplication;
+    @Autowired
+    private Proportion proportion;
 
     /**
      * 新增房屋
@@ -56,9 +67,20 @@ public class HouseServiceImpl implements HouseService {
         }
 
         house.setAgencyName(agency.getAgencyName());
-        house.setStatus("U");
+        house.setStatus("E");
 
         houseDao.insert(house);
+
+        Landlord landlord = landlordDao.selectByUserId(house.getUserId());
+        landlordApplication.setApplyType("L");
+        landlordApplication.setHouseId(house.getHouseId());
+        landlordApplication.setLandlordId(landlord.getLandlordId());
+        landlordApplication.setAgencyId(house.getAgencyId());
+        landlordApplication.setStatus("SR");//申请单状态(开始审核SR 审核通过U 审核不通过E)
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        landlordApplication.setDate(sqlDate);
+        landlordApplicationService.insertLandlordApplication(landlordApplication);
 
     }
 
@@ -162,6 +184,47 @@ public class HouseServiceImpl implements HouseService {
         List<House> houses = houseDao.selectByCond(userId, community, layerNum, houseType, houseArea, price);
 
         return houses;
+    }
+
+    /**
+     * 中介仪表盘
+     * @return Proportion 占比
+     * @throws CommonException
+     */
+    @Override
+    public Proportion dashBoard() throws CommonException{
+
+        Integer houseCount = houseDao.count();
+
+        Integer one = houseDao.countByHouseType("一室一厅一卫");
+        Integer two = houseDao.countByHouseType("两室一厅一卫");
+        Integer third = houseDao.countByHouseType("三室一厅一卫");
+        Integer four = houseDao.countByHouseType("三室两厅一卫");
+
+        DecimalFormat df = new DecimalFormat("0.00");//格式化小数
+        String o = df.format(((float)one/houseCount)*100);//返回的是String类型
+        String t = df.format(((float)two/houseCount)*100);
+        String th = df.format(((float)third/houseCount)*100);
+        String f = df.format(((float)four/houseCount)*100);
+
+        Integer a = houseDao.countByLocated("城中区");
+        Integer b = houseDao.countByLocated("郊区");
+        Integer c = houseDao.countByLocated("城乡结合部");
+
+        String aa = df.format(((float)a/houseCount)*100);
+        String bb = df.format(((float)b/houseCount)*100);
+        String cc = df.format(((float)c/houseCount)*100);
+
+        proportion.setOneRoomOnelive(o);
+        proportion.setTwoRoomOnelive(t);
+        proportion.setThirdRoomOnelive(th);
+        proportion.setThirdRoomTwolive(f);
+
+        proportion.setInCity(aa);
+        proportion.setOutCity(bb);
+        proportion.setOnCity(cc);
+
+        return proportion;
     }
 
 }

@@ -28,4 +28,12 @@ public interface TenantService {
      */
     void update(Tenant tenant) throws CommonException;
 
+    /**
+     * 通过租客id查找租客信息
+     * @param tenantId 用户id
+     * @return Tenant 租客实体
+     * @throws CommonException
+     */
+    Tenant selectByTenantId(Integer tenantId) throws CommonException;
+
 }

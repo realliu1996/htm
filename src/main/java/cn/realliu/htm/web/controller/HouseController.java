@@ -2,9 +2,12 @@ package cn.realliu.htm.web.controller;
 
 import cn.realliu.htm.common.bean.House;
 import cn.realliu.htm.common.bean.Landlord;
+import cn.realliu.htm.common.bean.LandlordApplication;
 import cn.realliu.htm.common.exception.CommonException;
 import cn.realliu.htm.service.interfaces.HouseService;
+import cn.realliu.htm.service.interfaces.LandlordApplicationService;
 import cn.realliu.htm.service.interfaces.LandlordService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,16 +28,18 @@ import java.util.List;
 public class HouseController {
 
     @Autowired
-    HouseService houseService;
+    private HouseService houseService;
     @Autowired
-    House newHouse;
+    private House newHouse;
     @Autowired
-    LandlordService landlordService;
+    private LandlordService landlordService;
 
     //新增房屋信息
     @RequestMapping(value = "/addHouse",method = RequestMethod.POST)
     public String addHouse(House house, HttpSession session){
         try {
+
+            Landlord landlord = (Landlord) session.getAttribute("landlord");
             houseService.insertHouse(house);
             session.setAttribute("msg","房屋录入成功！");
             return "redirect:/showhouseentry";
@@ -99,13 +104,17 @@ public class HouseController {
     }
 
     //根据条件查询房屋信息
-    @RequestMapping(value = "/selectByCond",method = RequestMethod.POST)
-    public String selectByCond(String community, Integer layerNum,String houseType,double houseArea,
+    @RequestMapping(value = "/selectByCond",method = {RequestMethod.POST,RequestMethod.GET})
+    public String selectByCond(String community, Integer layerNum,String houseType,String houseArea,
                                Integer price,HttpSession session){
 
         try {
+            Double area = null;
+            if (!StringUtils.isBlank(houseArea)) {
+                area = Double.parseDouble(houseArea);
+            }
             Landlord landlord = (Landlord) session.getAttribute("landlord");
-            List<House> condHouses = houseService.selectByCond(landlord.getUserId(), community, layerNum, houseType, houseArea, price);
+            List<House> condHouses = houseService.selectByCond(landlord.getUserId(), community, layerNum, houseType, area, price);
             session.setAttribute("condHouses",condHouses);
             return "redirect:/showLandlordHome";
         }catch (CommonException e){

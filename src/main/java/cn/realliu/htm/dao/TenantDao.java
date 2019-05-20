@@ -21,4 +21,7 @@ public interface TenantDao {
     //通过用户id修改租客信息
     void update(Tenant tenant);
 
+    //通过租客id查找租客信息
+    Tenant selectByTenantId(Integer tenantId);
+
 }

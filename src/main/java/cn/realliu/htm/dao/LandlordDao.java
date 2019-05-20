@@ -20,4 +20,7 @@ public interface LandlordDao {
 
     //通过用户id修改房东信息
     void update(Landlord landlord);
+
+    //通过房东id查找房东信息
+    Landlord selectByLandlordId(Integer landlordId);
 }

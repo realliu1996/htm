@@ -7,19 +7,144 @@
         <id property="applyId" column="APPLY_ID" />
         <result property="applyType" column="APPLY_TYPE" />
         <result property="houseId" column="HOUSE_ID" />
+        <result property="community" column="COMMUNITY" />
         <result property="landlordId" column="LANDLORD_ID" />
+        <result property="landlordName" column="LANDLORD_NAME" />
         <result property="tenantId" column="TENANT_ID" />
+        <result property="tenantName" column="TENANT_NAME" />
         <result property="agencyId" column="AGENCY_ID" />
+        <result property="agencyName" column="AGENCY_NAME" />
         <result property="rentalPrice" column="RENTAL_PRICE" />
         <result property="rentalTime" column="RENTAL_TIME" />
         <result property="status" column="STATUS" />
+        <result property="date" column="DATE" />
     </resultMap>
 
     <!-- 新增租房申请单 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="applyId" parameterType="cn.realliu.htm.common.bean.TenantApplication" >
-        insert into TENANT_APPLICATION(APPLY_TYPE,HOUSE_ID,LANDLORD_ID,TENANT_ID,AGENCY_ID,RENTAL_PRICE,RENTAL_TIME,STATUS)
-        values(#{applyType,jdbcType=VARCHAR},#{houseId,jdbcType=INTEGER},#{landlordId,jdbcType=INTEGER},#{tenantId,jdbcType=INTEGER},
-              #{agencyId,jdbcType=INTEGER},#{rentalPrice,jdbcType=INTEGER},#{rentalTime,jdbcType=INTEGER},#{status,jdbcType=VARCHAR})
+        insert into TENANT_APPLICATION(APPLY_TYPE,HOUSE_ID,COMMUNITY,LANDLORD_ID,LANDLORD_NAME,TENANT_ID,TENANT_NAME,AGENCY_ID,AGENCY_NAME,RENTAL_PRICE,RENTAL_TIME,STATUS,DATE)
+        values(#{applyType,jdbcType=VARCHAR},#{houseId,jdbcType=INTEGER},#{community,jdbcType=VARCHAR},#{landlordId,jdbcType=INTEGER},
+              #{landlordName,jdbcType=VARCHAR},#{tenantId,jdbcType=INTEGER},#{tenantName,jdbcType=VARCHAR},#{agencyId,jdbcType=INTEGER},
+              #{agencyName,jdbcType=VARCHAR},#{rentalPrice,jdbcType=INTEGER},#{rentalTime,jdbcType=INTEGER},#{status,jdbcType=VARCHAR},
+              #{date,jdbcType=DATE})
     </insert>
+
+    <!-- 按条件查询申请单信息 -->
+    <select id="selectByCond" resultMap="TenantApplicationResult">
+        select *
+        from TENANT_APPLICATION
+        <where>
+            <if test="landlordName!= null and landlordName!= ''">
+                LANDLORD_NAME LIKE CONCAT(CONCAT('%',#{landlordName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="tenantName!= null and tenantName!= ''">
+                and TENANT_NAME LIKE CONCAT(CONCAT('%',#{tenantName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="agencyId!= null">
+                and AGENCY_ID= #{agencyId,jdbcType=INTEGER}
+            </if>
+            <if test="status!= null">
+                and STATUS= #{status,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <!-- 通过申请单id修改申请单 -->
+    <update id="update">
+		update TENANT_APPLICATION
+		set STATUS= #{status,jdbcType=VARCHAR}
+		where APPLY_ID=#{applyId}
+	</update>
+
+    <!-- 按条件查询申请单信息 -->
+    <select id="selectForLandlord" resultMap="TenantApplicationResult">
+        select *
+        from TENANT_APPLICATION
+        <where>
+            <if test="landlordName!= null and landlordName!= ''">
+                LANDLORD_NAME LIKE CONCAT(CONCAT('%',#{landlordName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="tenantName!= null and tenantName!= ''">
+                and TENANT_NAME LIKE CONCAT(CONCAT('%',#{tenantName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="landlordId!= null">
+                and LANDLORD_ID= #{landlordId,jdbcType=INTEGER}
+            </if>
+            <if test="status!= null">
+                and STATUS= #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <!-- 按申请单id查询申请单信息 -->
+    <select id="selectByApplyId" parameterType="Integer" resultMap="TenantApplicationResult">
+            select *
+            from TENANT_APPLICATION
+            where APPLY_ID= #{applyId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 按条件查询申请单信息(租客) -->
+    <select id="selectForTenant" resultMap="TenantApplicationResult">
+        select *
+        from TENANT_APPLICATION
+        <where>
+            <if test="landlordName!= null and landlordName!= ''">
+                LANDLORD_NAME LIKE CONCAT(CONCAT('%',#{landlordName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="tenantName!= null and tenantName!= ''">
+                and TENANT_NAME LIKE CONCAT(CONCAT('%',#{tenantName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="tenantId!= null">
+                and TENANT_ID= #{tenantId,jdbcType=INTEGER}
+            </if>
+            <if test="status!= null">
+                and STATUS= #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <!-- 按房屋id查询申请单信息 -->
+    <select id="selectByHouseId" parameterType="Integer" resultMap="TenantApplicationResult">
+            select *
+            from TENANT_APPLICATION
+            where HOUSE_ID= #{houseId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 统计报表查询租房申请单（房东） -->
+    <select id="selectCountForLandlord" resultMap="TenantApplicationResult">
+        select *
+        from TENANT_APPLICATION
+        <where>
+            <if test="tenantName!= null and tenantName!= ''">
+                and TENANT_NAME LIKE CONCAT(CONCAT('%',#{tenantName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="landlordId!= null">
+                and LANDLORD_ID= #{landlordId,jdbcType=INTEGER}
+            </if>
+            <if test="status!= null and status!= ''">
+                and STATUS= #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <!-- 统计报表查询租房申请单（中介） -->
+    <select id="selectCountForAgency" resultMap="TenantApplicationResult">
+        select *
+        from TENANT_APPLICATION
+        <where>
+            <if test="landlordName!= null and landlordName!= ''">
+                LANDLORD_NAME LIKE CONCAT(CONCAT('%',#{landlordName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="tenantName!= null and tenantName!= ''">
+                and TENANT_NAME LIKE CONCAT(CONCAT('%',#{tenantName,jdbcType=VARCHAR},'%'))
+            </if>
+            <if test="agencyId!= null">
+                and AGENCY_ID= #{agencyId,jdbcType=INTEGER}
+            </if>
+            <if test="status!= null">
+                and STATUS= #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 
 </mapper>

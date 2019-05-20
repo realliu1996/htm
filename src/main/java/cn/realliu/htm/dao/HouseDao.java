@@ -33,4 +33,13 @@ public interface HouseDao {
     //按条件查询房屋信息
     List<House> selectByCond(@Param("userId")Integer userId,@Param("community")String community, @Param("layerNum")Integer layerNum,
                              @Param("houseType")String houseType,@Param("houseArea")Double houseArea, @Param("price")Integer price);
+
+    //获取所有房屋数量
+    Integer count();
+
+    //按户型获取房屋数量
+    Integer countByHouseType(String houseType);
+
+    //按坐落获取房屋数量
+    Integer countByLocated(String located);
 }

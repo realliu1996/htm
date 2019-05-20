@@ -85,4 +85,21 @@
 
     </select>
 
+    <!--获取所有房屋数量-->
+    <select id="count"  resultType="Integer">
+        SELECT COUNT(*) FROM HOUSE
+    </select>
+
+    <!--按户型获取房屋数量-->
+    <select id="countByHouseType" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM HOUSE
+        where HOUSE_TYPE = #{houseType,jdbcType=VARCHAR}
+    </select>
+
+    <!--按坐落获取房屋数量-->
+    <select id="countByLocated" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM HOUSE
+        where LOCATED = #{located,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

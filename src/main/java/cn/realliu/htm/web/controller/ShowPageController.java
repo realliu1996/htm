@@ -58,6 +58,11 @@ public class ShowPageController {
         return "rearPage/landlord/basicdata/addLandlord";
     }
 
+    @RequestMapping(value = "/showLandlordApplication",method = RequestMethod.GET)
+    public String showLandlordApplication() {
+        return "rearPage/landlord/tenancy/landlordApplication";
+    }
+
     @RequestMapping(value = "/showlandlordinfo",method = RequestMethod.GET)
     public String showLandlordInfo() {
         return "rearPage/landlord/basicdata/landlordInfo";
@@ -74,6 +79,21 @@ public class ShowPageController {
     @RequestMapping(value = "/showaddagency",method = RequestMethod.GET)
     public String showAddAgency() {
         return "rearPage/agency/basicdata/addAgency";
+    }
+
+    @RequestMapping(value = "/showLandlordApplicationReview",method = RequestMethod.GET)
+    public String showLandlordApplicationReview() {
+        return "rearPage/agency/tenancy/landlordApplication";
+    }
+
+    @RequestMapping(value = "/showTenantApplicationReview",method = RequestMethod.GET)
+    public String showTenantApplicationReview() {
+        return "rearPage/agency/tenancy/tenantApplication";
+    }
+
+    @RequestMapping(value = "/showReview",method = RequestMethod.GET)
+    public String showReview() {
+        return "rearPage/landlord/tenancy/tenantApplication";
     }
 
     @RequestMapping(value = "/showagencyinfo",method = RequestMethod.GET)
@@ -126,6 +146,51 @@ public class ShowPageController {
         return "rearPage/landlord/tenancy/houseEntry";
     }
 
+    @RequestMapping(value = "/showContractForLandlord",method = RequestMethod.GET)
+    public String showContractForLandlord() {
+        return "rearPage/landlord/contract/contractList";
+    }
+
+    @RequestMapping(value = "/showleaseContract",method = RequestMethod.GET)
+    public String showleaseContract() {
+        return "rearPage/landlord/contract/leaseContract";
+    }
+
+    @RequestMapping(value = "/applicationCount",method = RequestMethod.GET)
+    public String applicationCount() {
+        return "rearPage/landlord/report/applicationCount";
+    }
+
+    @RequestMapping(value = "/showLandlordCount",method = RequestMethod.GET)
+    public String showLandlordCount() {
+        return "rearPage/landlord/report/landlordCount";
+    }
+
+    @RequestMapping(value = "/showTenantCount",method = RequestMethod.GET)
+    public String showTenantCount() {
+        return "rearPage/landlord/report/tenantCount";
+    }
+
+    @RequestMapping(value = "/showContractForAgency",method = RequestMethod.GET)
+    public String showContractForAgency() {
+        return "rearPage/agency/contract/contractList";
+    }
+
+    @RequestMapping(value = "/showCForAgency",method = RequestMethod.GET)
+    public String showCForAgency() {
+        return "rearPage/agency/report/landlordCount";
+    }
+
+    @RequestMapping(value = "/showTenantCountForAgency",method = RequestMethod.GET)
+    public String showTenantCountForAgency() {
+        return "rearPage/agency/report/tenantCount";
+    }
+
+    @RequestMapping(value = "/showDashBoard",method = RequestMethod.GET)
+    public String showDashBoard() {
+        return "rearPage/agency/dashBoard";
+    }
+
     public String getSystem(){
         Properties props = System.getProperties();
 
@@ -153,6 +218,44 @@ public class ShowPageController {
     @RequestMapping(value = "/showAgency",method = RequestMethod.GET)
     public String showAgency() {
         return "frontPage/agency";
+    }
+
+    @RequestMapping(value = "/showtApplication",method = RequestMethod.GET)
+    public String showtApplication() {
+        return "frontPage/tenancy/tenantApplication";
+    }
+
+    @RequestMapping(value = "/showContractForTenant",method = RequestMethod.GET)
+    public String showContractForTenant() {
+        return "frontPage/contract/contractList";
+    }
+
+    @RequestMapping(value = "/showlContract",method = RequestMethod.GET)
+    public String showlContract() {
+        return "frontPage/contract/leaseContract";
+    }
+
+    @RequestMapping(value = "/showPrecreate",method = {RequestMethod.GET,RequestMethod.POST})
+    public String showPrecreate() {
+        return "frontPage/contract/trade_precreate";
+    }
+
+    @RequestMapping(value = "/showCountForTenant",method = RequestMethod.GET)
+    public String showCountForTenant() {
+        return "frontPage/report/contractCount";
+    }
+
+    @RequestMapping(value = "/showFTenantInfo",method = RequestMethod.GET)
+    public String showFTenantInfo() {
+        return "frontPage/basicdata/tenantInfo";
+    }
+
+    @RequestMapping(value = "/showFTenantSystem",method = RequestMethod.GET)
+    public String showFTenantSystem(HttpSession session) {
+
+        String system = getSystem();
+        session.setAttribute("system",system);
+        return "frontPage/basicdata/systemInfo";
     }
 
 }

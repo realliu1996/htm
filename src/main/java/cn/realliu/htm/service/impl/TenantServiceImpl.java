@@ -67,4 +67,26 @@ public class TenantServiceImpl implements TenantService {
         tenantDao.update(tenant);
 
     }
+
+    /**
+     * 通过租客id查找租客信息
+     * @param tenantId 租客id
+     * @return Tenant 租客实体
+     * @throws CommonException
+     */
+    @Override
+    public Tenant selectByTenantId(Integer tenantId) throws CommonException{
+
+        if (tenantId == 0){
+            throw CommonException.getException(401);
+        }
+
+        Tenant tenant = tenantDao.selectByTenantId(tenantId);
+
+        if (tenant == null){
+            throw  CommonException.getException(404);
+        }
+
+        return tenant;
+    }
 }

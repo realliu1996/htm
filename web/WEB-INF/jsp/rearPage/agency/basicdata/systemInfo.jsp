@@ -135,7 +135,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../../index.html"><i class="fa fa-circle-o"></i> 仪表盘</a></li>
+                        <li><a href="agency/dashBoard"><i class="fa fa-circle-o"></i> 仪表盘</a></li>
                     </ul>
                 </li>
                 <li class="treeview" id="marketing">
@@ -146,8 +146,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="sales"><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> 录入审核</a></li>
-                        <li id="development"><a href="../tables/simple1.html"><i class="fa fa-circle-o"></i>  租房审核</a></li>
+                        <li id="sales"><a href="landlordApplication/selectByAgencyId"><i class="fa fa-circle-o"></i> 录入审核</a></li>
+                        <li id="development"><a href="tenantApplication/selectByCond"><i class="fa fa-circle-o"></i>  租房审核</a></li>
                     </ul>
                 </li>
 
@@ -159,7 +159,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="create"><a href="../forms/advanced2.html"><i class="fa fa-circle-o"></i> 房屋合同</a></li>
+                        <li id="create"><a href="contract/selectForAgency"><i class="fa fa-circle-o"></i> 房屋合同</a></li>
                     </ul>
                 </li>
 
@@ -172,8 +172,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs1.html"><i class="fa fa-circle-o"></i> 录入处理</a></li>
-                        <li><a href="../charts/chartjs1.html"><i class="fa fa-circle-o"></i> 租赁处理</a></li>
+                        <li><a href="landlordApplication/selectForAgency"><i class="fa fa-circle-o"></i> 录入处理</a></li>
+                        <li><a href="tenantApplication/selectCountForAgency"><i class="fa fa-circle-o"></i> 租赁处理</a></li>
                     </ul>
                 </li>
 

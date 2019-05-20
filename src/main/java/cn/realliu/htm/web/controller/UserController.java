@@ -120,7 +120,7 @@ public class UserController {
                     return "redirect:/showaddagency";
                 } else if ("U".equals(agency.getStatus())){
                     session.setAttribute("agency",agency);
-                    return "redirect:/showagencyinfo";
+                    return "redirect:../agency/dashBoard";
                 } else {
                     return "redirect:/showlogin";
                 }

@@ -1,6 +1,7 @@
 package cn.realliu.htm.service.interfaces;
 
 import cn.realliu.htm.common.bean.House;
+import cn.realliu.htm.common.bean.Proportion;
 import cn.realliu.htm.common.exception.CommonException;
 
 import java.util.List;
@@ -68,5 +69,13 @@ public interface HouseService {
      */
     List<House> selectByCond(Integer userId,String community, Integer layerNum,
                              String houseType,Double houseArea, Integer price) throws CommonException;
+
+
+    /**
+     * 中介仪表盘
+     * @return Proportion 占比
+     * @throws CommonException
+     */
+    Proportion dashBoard() throws CommonException;
 
 }

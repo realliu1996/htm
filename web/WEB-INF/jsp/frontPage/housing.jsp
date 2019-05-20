@@ -67,20 +67,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="tenant/selectAllAgency">中介</a></li>
                             </ul>
                         </li>
-                        <li><a href="properties.html"><span>我的申请</span></a></li>
-                        <li><a href="properties.html"><span>房屋合同</span></a></li>
+                        <li><a href="tenantApplication/selectByCondForTenant"><span>我的申请</span></a></li>
+                        <li><a href="contract/selectByTenantId"><span>房屋合同</span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes">统计报表</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
-                                <li><a href="index.html">我的收藏</a></li>
-                                <li><a href="typography.html">我的租赁</a></li>
+                                <li><a href="contract/selectCountForTenant">我的合同</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-hover="Short Codes">基础数据</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
-                                <li><a href="index.html">租客信息</a></li>
-                                <li><a href="typography.html">系统信息</a></li>
+                                <li><a href="/showFTenantInfo">租客信息</a></li>
+                                <li><a href="/showFTenantSystem">系统信息</a></li>
                             </ul>
                         </li>
                         <li><a id="inout" href="/showlogin"><span id="login">登录</span></a></li>
@@ -391,7 +390,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             },
             error: function () {
                 toastr.options.positionClass = 'toast-center-center';
-                toastr.info("未知错误");
+                toastr.info("请登录");
             },
         });
 

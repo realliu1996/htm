@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -29,6 +31,8 @@ public class TenantController {
     private TenantService tenantService;
     @Autowired
     private AgencyService agencyService;
+    @Autowired
+    private Tenant tenant;
 
     //完善租客信息
     @RequestMapping(value = "/updateTenant",method = RequestMethod.POST)
@@ -37,7 +41,8 @@ public class TenantController {
         try {
             tenantService.update(tenant);
             session.setAttribute("tenant",tenant);
-            return "redirect:/showIndex";
+            session.setAttribute("msg","完善信息成功");
+            return "redirect:/showlogin";
         } catch (CommonException e) {
             e.printStackTrace();
             session.setAttribute("msg",e.getMessage());
@@ -59,6 +64,21 @@ public class TenantController {
             session.setAttribute("msg",e.getMessage());
             return "redirect:/showAgency";
         }
+    }
 
+    //查询租客信息
+    @ResponseBody
+    @RequestMapping(value = "/selectById",method = RequestMethod.POST)
+    public Tenant selectById(@RequestParam("tenantId") Integer tenantId, HttpSession session){
+
+        try{
+            tenant = tenantService.selectByTenantId(tenantId);
+            return tenant;
+
+        }catch (CommonException e){
+            e.printStackTrace();
+            tenant.setTenantId(0);
+            return tenant;
+        }
     }
 }

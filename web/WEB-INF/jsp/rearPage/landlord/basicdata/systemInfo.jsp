@@ -135,7 +135,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/showLandlordHome"><i class="fa fa-circle-o"></i> 我的房源</a></li>
+                        <li><a href="house/selectByCond"><i class="fa fa-circle-o"></i> 我的房源</a></li>
                     </ul>
                 </li>
                 <li class="treeview" id="marketing">
@@ -147,8 +147,8 @@
                     </a>
                     <ul class="treeview-menu">
                         <li id="sales"><a href="/showhouseentry"><i class="fa fa-circle-o"></i> 房屋录入</a></li>
-                        <li id="development"><a href="../tables/simple1.html"><i class="fa fa-circle-o"></i>  我的申请</a></li>
-                        <li id="development"><a href="../tables/simple1.html"><i class="fa fa-circle-o"></i>  租客申请</a></li>
+                        <li id="development"><a href="landlordApplication/selectByCond"><i class="fa fa-circle-o"></i>  我的申请</a></li>
+                        <li id="development"><a href="tenantApplication/selectByCondForLandlord"><i class="fa fa-circle-o"></i>  租客申请</a></li>
                     </ul>
                 </li>
 
@@ -160,7 +160,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li id="create"><a href="../forms/advanced2.html"><i class="fa fa-circle-o"></i> 房屋合同</a></li>
+                        <li id="create"><a href="contract/selectByLandlordId"><i class="fa fa-circle-o"></i> 房屋合同</a></li>
                     </ul>
                 </li>
 
@@ -173,7 +173,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs1.html"><i class="fa fa-circle-o"></i> 我的租赁</a></li>
+                        <li><a href="landlordApplication/selectByCondCount"><i class="fa fa-circle-o"></i> 我的录入</a></li>
+                        <li><a href="tenantApplication/selectCountForLandlord"><i class="fa fa-circle-o"></i> 我的租赁</a></li>
                     </ul>
                 </li>
 

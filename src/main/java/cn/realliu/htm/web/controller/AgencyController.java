@@ -1,8 +1,10 @@
 package cn.realliu.htm.web.controller;
 
 import cn.realliu.htm.common.bean.Agency;
+import cn.realliu.htm.common.bean.Proportion;
 import cn.realliu.htm.common.exception.CommonException;
 import cn.realliu.htm.service.interfaces.AgencyService;
+import cn.realliu.htm.service.interfaces.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,10 @@ public class AgencyController {
     private AgencyService agencyService;
     @Autowired
     private Agency agency;
+    @Autowired
+    private HouseService houseService;
+    @Autowired
+    private Proportion proportion;
 
     //完善中介信息
     @RequestMapping(value = "/updateAgency",method = RequestMethod.POST)
@@ -56,6 +62,21 @@ public class AgencyController {
             e.printStackTrace();
             agency.setAgencyId(0);
             return agency;
+        }
+    }
+
+    //中介仪表盘
+    @RequestMapping(value = "/dashBoard",method = {RequestMethod.POST,RequestMethod.GET})
+    public String dashBoard(HttpSession session){
+
+        try {
+            proportion = houseService.dashBoard();
+            session.setAttribute("proportion",proportion);
+            return "redirect:/showDashBoard";
+        } catch (CommonException e) {
+            e.printStackTrace();
+            session.setAttribute("proportion",proportion);
+            return "redirect:/showDashBoard";
         }
     }
 

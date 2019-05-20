@@ -43,4 +43,11 @@
 		where USER_ID=#{userId}
 	</update>
 
+    <!-- 通过租客id查找租客信息 -->
+    <select id="selectByTenantId" parameterType="Integer" resultMap="TenantResult">
+            select *
+            from TENANT
+            where TENANT_ID= #{tenantId,jdbcType=INTEGER}
+    </select>
+
 </mapper>
